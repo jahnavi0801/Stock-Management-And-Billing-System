@@ -1,11 +1,10 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.*;
 
 public class Customer{
 	
+    static String s ; 
+    static int id;
+    static int n;
 	private String name;
 	private String phn;
     static Scanner sc = new Scanner(System.in);
@@ -38,11 +37,11 @@ public class Customer{
                                break;
 
                     case "2" : System.out.println("Welcome to the Food section.");
-                               Food(); 
+                              // Food(); 
                                break;
 
                     case "3" : System.out.println("Welcome to the Crockery section.");
-                               Crockery(); 
+                               //Crockery(); 
                                break;
 
                     case "4" : StockMAnagementAndBilling s = new StockMAnagementAndBilling();
@@ -78,7 +77,7 @@ public class Customer{
             switch(n)
             {
                     case "1" : System.out.println("Dental");
-                               Dental();
+                               //Dental();
                                break;
 
                     case "2" : System.out.println("Bathing");
@@ -86,7 +85,7 @@ public class Customer{
                                break;
 
                     case "3" : System.out.println("Utilities");
-                               Utilities();
+                               //Utilities();
                                break;
 
                     case "4" : System.out.println("Thank you for coming.Visit again .");    
@@ -96,8 +95,22 @@ public class Customer{
                               break; 
                     } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
-    }    
+    }
 
+	static void Bathing() {
+		s = "bathing";
+		System.out.println("BATHING");
+		System.out.println();
+		Product c = new Product();
+		c.Table(s);
+		System.out.print("Select ID : ");
+		id = sc.nextInt();
+		System.out.print("Quantity : ");
+		n = sc.nextInt();
+		c.buy(id,n);
+	}  
+    
+/*
     static void Utilities() {
     	try {
 			System.out.println("Hey there !!!");
@@ -142,7 +155,6 @@ public class Customer{
 		}
 	
 	}
-
 	static void Dental() {
     	try {
 			System.out.println("Hey there !!!");
@@ -434,5 +446,5 @@ public class Customer{
    	     {
    	    	 System.out.println(e);
    	     }
-   	}
+   	}*/
     }    
