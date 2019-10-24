@@ -1,5 +1,8 @@
 import java.util.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Customer{
 	
     static String s ; 
@@ -13,12 +16,16 @@ public class Customer{
     public void Details() {
     	System.out.println("Enter your name :");
     	name = sc.nextLine();
-    	/*do {
-    		System.out.println("Enter your phone number : ");
-    		phno = sc.nextLine();
-    		if(phno.length() != 10 )
-    			System.out.println("Please enter a valid phone number.");
-    	}while(phno.length()!=10);*/
+    	System.out.println("Enter your PhoneNumber : ");
+    	String phn = sc.nextLine();
+    	Pattern p = Pattern.compile("\\d{10}");
+    	Matcher m = p.matcher(phn);
+    	if(m.matches()) {
+    		phno = phn;
+    	}
+    	else {
+    		System.out.println("Please Enter Valid Number");
+    	}
     }
     
     public void Display(){
@@ -108,7 +115,7 @@ public class Customer{
 		System.out.print("nos : ");
 		n = sc.nextInt();
 		c.buy(id,n);
-		c.cart(name,id,n);
+		c.cart(name,phno,id,n);
 	}  
 	
     }    

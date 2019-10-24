@@ -42,25 +42,31 @@ public class Product implements Connectivity {
 			System.out.println(e);
 		}
 	}
-	static void cart(String name, int id, int n) {
-		int sno = 1;
+	static void cart(String name,String phno, int id, int n) {
+		int sno = 1, cost = 0;
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
 		    PreparedStatement pt = p.person();
 		    pt.setInt(1, sno);
+		    sno++;
 			pt.setString(2, name);
-			pt.setInt(3, 123456);
-			pt.setInt(5, 12);
+			pt.setString(3, phno);
 			pt.setInt(6, sno);
-
 			while(r.next())
 		    {
 		    	String pn = r.getString("Product_name");
 		    	String list = pn +" - "+n;
 		    	pt.setString(4, list);
-		    	pt.executeUpdate();
 		    }
+			ResultSet r1 = s.executeQuery("select MRP from items where ID = 11"); 
+			while(r1.next()) {
+				String t = r1.getString("MRP");
+				int mrp = Integer.parseInt(t.substring(4));
+				cost = cost + n*mrp;
+			}
+			pt.setInt(5, cost);
+	        pt.executeUpdate();
 		}catch(Exception e) {
 	    	System.out.println(e);
 	    }
