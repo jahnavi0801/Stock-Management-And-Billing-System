@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 public class Product implements Connectivity {
@@ -21,7 +22,6 @@ public class Product implements Connectivity {
 	}
 	static void buy(int id, int n)
 	{
-		Product p = new Product();
 		try {
 			Statement s = (Statement) p.Connect();
 			sql = "SELECT *FROM items WHERE ID = '"+id+"'";
@@ -29,7 +29,7 @@ public class Product implements Connectivity {
 		    if(r.next()) {
 		    	if(n <= r.getInt("Current_Stock")) {
 		    		sql = "Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+id+"'";
-		    	    s.executeUpdate(sql);
+		    		s.executeUpdate(sql);
 		    	}
 		    	else {
 		    		System.out.println("Avaliable Stock is :"+ r.getInt("Current_Stock"));
@@ -42,5 +42,28 @@ public class Product implements Connectivity {
 			System.out.println(e);
 		}
 	}
+	static void cart(String name, int id, int n) {
+		int sno = 1;
+		try {
+			Statement s = (Statement) p.Connect();
+			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
+		    PreparedStatement pt = p.person();
+		    pt.setInt(1, sno);
+			pt.setString(2, name);
+			pt.setInt(3, 123456);
+			pt.setInt(5, 12);
+			pt.setInt(6, sno);
 
+			while(r.next())
+		    {
+		    	String pn = r.getString("Product_name");
+		    	String list = pn +" - "+n;
+		    	pt.setString(4, list);
+		    	pt.executeUpdate();
+		    }
+		}catch(Exception e) {
+	    	System.out.println(e);
+	    }
+	}
+    
 }
