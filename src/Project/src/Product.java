@@ -43,16 +43,16 @@ public class Product implements Connectivity {
 		}
 	}
 	static void cart(String name,String phno, int id, int n) {
-		int sno = 1, cost = 0;
+		int sno = 0, cost = 0;
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
 		    PreparedStatement pt = p.person();
 		    pt.setInt(1, sno);
-		    sno++;
-			pt.setString(2, name);
+		    pt.setString(2, name);
 			pt.setString(3, phno);
 			pt.setInt(6, sno);
+			sno++;
 			while(r.next())
 		    {
 		    	String pn = r.getString("Product_name");
