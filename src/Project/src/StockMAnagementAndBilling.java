@@ -19,7 +19,7 @@ class StockMAnagementAndBilling {
                            break;
 
                 case "2" : Employee e = new Employee();
-                           e.Print(); 
+                           e.password(); 
                            break;
 
                 case "3" : System.out.println("Thank you for coming.Visit again soon.");    
