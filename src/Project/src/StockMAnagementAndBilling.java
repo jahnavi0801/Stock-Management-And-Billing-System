@@ -19,13 +19,13 @@ class StockMAnagementAndBilling {
                            break;
 
                 case "2" : Employee e = new Employee();
-                           e.password(); 
+                           e.Print(); 
                            break;
 
                 case "3" : System.out.println("Thank you for coming.Visit again soon.");    
                            System.exit(0);
 
-                default : System.out.println("The number you entered is incorrect.Please try again.");
+                default : System.out.println("Please try again : ");
                           break; 
             } 
         }while(n!="1" && n!="2");

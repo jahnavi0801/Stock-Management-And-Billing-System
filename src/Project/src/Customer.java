@@ -16,25 +16,26 @@ public class Customer{
     public void Details() {
     	System.out.println("Enter your name :");
     	name = sc.nextLine();
-    	System.out.println("Enter Your Phonenumer");
-    	inputphno();
+    	System.out.println("Enter Your Phonenumber : ");
+    	input();
     }
-    private void inputphno() {
-		String phn = sc.nextLine();
-		set(phn);
+    private void input() {
+		String a = sc.nextLine();
+		set(a);
 	}
+    
     private void set(String s) {
     	Pattern p = Pattern.compile("\\d{10}");
     	Matcher m = p.matcher(s);
     	if(m.matches())
-    		System.out.println("Ok");
+    		s = phno;
     	else {
-            System.out.println("Please enter valid number : ");
-    		inputphno();    		
+            System.out.println("Please enter valid Phnoenumber : ");
+    		input();    		
     	}
     }
-
-	public void Display(){
+    
+    static void Display(){
         String n,n1;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -69,171 +70,200 @@ public class Customer{
                               break; 
             } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&&!(n.equals("5")));
-        System.out.print(sc.nextLine());
+       /* System.out.print(sc.nextLine());
         System.out.println("Do you want ot continue(Y/N) ?");
         n1 = sc.nextLine();
         if(n1.equals("Y")||n1.equals("y"))
             Display();
         else
             System.out.println("Thank you for coming.Visit again .");
-            System.exit(0);    
+            System.exit(0);*/
     }
-    
-    private void Crockery() {
-		System.out.println("We have only kitchenware");
-		s = "kitchenware";
-		System.out.println("KITCHENWARE");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
 
-	public void Food() {
-    	String n;
-        do{
-            System.out.println("Select the item which you would like to buy.");
-            System.out.println("1. Dairy");
-            System.out.println("2. Fruits");
-            System.out.println("3. Vegetables");
-            System.out.println("4. Exit");
-            n = sc.nextLine();
-            switch(n)
-            {
-                    case "1" : System.out.println("Dental");
-                               Dairy();
-                               break;
-
-                    case "2" : System.out.println("Bathing");
-                               Fruits();
-                               break;
-
-                    case "3" : System.out.println("Utilities");
-                               Vegetables();
-                               break;
-
-                    case "4" : System.out.println("Thank you for coming.Visit again .");    
-                               System.exit(0);
-
-                    default : System.out.println("The number you entered is incorrect.Please try again.");
-                              break; 
-                    } 
-        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
-
-	}
-
-	private void Vegetables() {
-		s = "vegetables";
-		System.out.println("VEGETABLES");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
-
-	private void Fruits() {
-		s = "fruits";
-		System.out.println("FRUITS");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
-
-	private void Dairy() {
-		s = "dairy";
-		System.out.println("DAIRY");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
-
-	public void DailyUses(){
+	 static void DailyUses(){
         String n;
         do{
             System.out.println("Select the item which you would like to buy.");
             System.out.println("1. Dental");
             System.out.println("2. Bathing");
             System.out.println("3. Utilities");
-            System.out.println("4. Exit");
+            System.out.println("4. Menu");
+            System.out.println("5. Exit");
             n = sc.nextLine();
             switch(n)
             {
-                    case "1" : System.out.println("Dental");
-                               Dental();
+                    case "1" : Dental();
                                break;
 
-                    case "2" : System.out.println("Bathing");
-                               Bathing();
+                    case "2" : Bathing();
                                break;
 
-                    case "3" : System.out.println("Utilities");
-                               Utilities();
+                    case "3" : Utilities();
                                break;
 
-                    case "4" : System.out.println("Thank you for coming.Visit again .");    
-                               System.exit(0);
-
+                    case "4" : Display();
+                               break;
+                               
+                    case "5" : System.out.println("Thank u fr visiting");
+			                   System.exit(0);
+			                   
                     default : System.out.println("The number you entered is incorrect.Please try again.");
                               break; 
                     } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
     }
-
-	private void Utilities() {
-		s = "utilities";
-		System.out.println("UTILITIES");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
-
-	private void Dental() {
-		s = "dental";
-		System.out.println("DENTAL");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}
-
-	private void Bathing() {
-		s = "bathing";
-		System.out.println("BATHING");
-		System.out.println();
-		c.Table(s);
-		System.out.print("Select ID : ");
-		id = sc.nextInt();
-		System.out.print("nos : ");
-		n = sc.nextInt();
-		c.buy(id,n);
-		c.cart(name,phno,id,n);
-	}  
 	
-    }    
+	static void Food() {
+    	String n;
+        do{
+            System.out.println("Select the item which you would like to buy.");
+            System.out.println("1. Dairy");
+            System.out.println("2. Fruits");
+            System.out.println("3. Vegetables");
+            System.out.println("4. Menu");
+            System.out.println("5. Exit");
+            n = sc.nextLine();
+            switch(n)
+            {
+                    case "1" : Dairy();
+                               break;
+
+                    case "2" : Fruits();
+                               break;
+
+                    case "3" : Vegetables();
+                               break;
+                    
+                    case "4" : Display();
+                               break;
+                    
+                    case "5" : System.out.println("Thank u fr visiting");
+	                            System.exit(0);
+	                   
+                    default : System.out.println("The number you entered is incorrect.Please try again.");
+                              break; 
+            }
+        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
+
+	}
+	static void Dental() {
+		s = "dental";
+		System.out.println("****DENTAL****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+	static void Bathing() {
+		s = "bathing";
+		System.out.println("****BATHING****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+	static void Utilities() {
+		s = "utilities";
+		System.out.println("****UTILITIES****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+	static void Dairy() {
+		s = "dairy";
+		System.out.println("****DAIRY****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}	
+	static void Fruits() {
+		s = "fruits";
+		System.out.println("****FRUITS****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+	static void Vegetables() {
+		s = "vegetables";
+		System.out.println("****VEGETABLES****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+    static void Crockery() {
+    	System.out.println();
+		System.out.println("We have only kitchenware");
+		s = "kitchenware";
+		System.out.println("****KITCHENWARE****");
+		System.out.println();
+		c.Table(s);
+		show(s);
+	}
+    
+	static void show(String a) {
+		String f;
+		do {
+		System.out.print("Would you like to continue (Y/N) : ");
+		f = sc.nextLine();
+		if(f.equals("Y")||f.equals("y"))
+		{
+			System.out.println("Select ID : ");
+			stock(a);
+			c.validate_n(id, n);
+			//c.cart(name, phno, id, n);
+		}
+		if(f.equals("N")||f.equals("n")){
+			String n;
+			do {
+				System.out.println("Select:");
+				System.out.println("1. Menu");
+				System.out.println("2. Exit");
+				n = sc.nextLine();
+				switch(n) 
+				{
+				case "1" : Display();
+				           break;
+				case "2" : System.out.println("Thank u fr visiting");
+				           System.exit(0);
+				default  : System.out.println("Please enter valid input : ");
+				           break;
+				}
+			}while(!(n.equals("1"))&&!(n.equals("2")));
+		}
+		
+    }while(!(f.equals("Y"))&& !(f.equals("y"))&&!(f.equals("N"))&&!(f.equals("n")));
+}	
+	static void stock(String a) {
+		id = sc.nextInt();
+        c.validate_id(a, id);
+	}
+	static void stocks(int i) {
+		n = sc.nextInt();
+		c.validate_n(i,n);
+	}
+	
+	static void call(int i) {
+		String f;
+		do {
+		    System.out.println("Select");
+		    System.out.println("1. Take the avaliable stock");
+		    System.out.println("2. Menu");
+		    System.out.println("3. Exit");
+		    f = sc.nextLine();
+		    switch(f)
+            {
+                    case "1" : System.out.println("Enter Quantity");
+                               stocks(i);
+                               break;
+
+                    case "2" : Display();
+                               break;
+            
+                    case "3" : System.out.println("Thank u fr visiting");
+			                   System.exit(0);
+			                   
+                    default : System.out.println("The number you entered is incorrect.Please try again.");
+                              break; 
+                    } 
+        }while(!(f.equals("1"))&&!(f.equals("2"))&&!(f.equals("3")));
+
+		}
+	}

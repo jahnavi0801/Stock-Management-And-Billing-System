@@ -6,6 +6,7 @@ import com.mysql.jdbc.Statement;
 public class Product implements Connectivity {
 	static String sql;
 	static Product p = new Product();
+	static Customer cus = new Customer();
 	static void Table(String x)
 	{
 		try {
@@ -20,30 +21,46 @@ public class Product implements Connectivity {
 	    	System.out.println(e);
 	     }
 	}
-	static void buy(int id, int n)
-	{
+	static void validate_id(String a, int id) {
 		try {
 			Statement s = (Statement) p.Connect();
-			sql = "SELECT *FROM items WHERE ID = '"+id+"'";
-		    ResultSet r = s.executeQuery(sql);
-		    if(r.next()) {
+			ResultSet r = s.executeQuery("select *from items where ID = '"+id+"'and category = '"+a+"'");
+			if(r.next()) {
+				System.out.println("Quantity : ");
+				cus.stocks(id);
+			}
+			else {
+				System.out.println("Enter valid ID : ");
+				cus.stock(a);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	static void validate_n(int id, int n) {
+		try {
+			Statement s = (Statement) p.Connect();
+			ResultSet r = s.executeQuery("select Current_Stock from items where ID = '"+id+"'");
+			while(r.next()) {
 		    	if(n <= r.getInt("Current_Stock")) {
 		    		sql = "Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+id+"'";
 		    		s.executeUpdate(sql);
 		    	}
-		    	else {
-		    		System.out.println("Avaliable Stock is :"+ r.getInt("Current_Stock"));
+		    	else if(n>r.getInt("Current_Stock")){
+		    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
+		    		cus.call(id);
 		    	}
-		    }
-		    else {
-		    	System.out.println("Enter valid ID");
+		    	else {
+		    		System.out.println("Check your input");
+		    	}
 		    }
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
 	static void cart(String name,String phno, int id, int n) {
-		int sno = 0, cost = 0;
+		int sno = 1, cost = 0;
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
