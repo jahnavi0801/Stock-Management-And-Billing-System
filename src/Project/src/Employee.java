@@ -3,10 +3,10 @@ import java.util.*;
 public class Employee{
     public String name;
     public int id;
-
+    static Scanner sc = new Scanner(System.in); 
+    
     public void Print(){
         
-        Scanner sc = new Scanner(System.in); 
         String n,n1;
         System.out.println("Enter the password : ");
         String p = sc.nextLine();
@@ -18,9 +18,9 @@ public class Employee{
         else
         {
             System.out.println("The password is incorrect.");
-            System.out.println("Press 1 if you want to try again.");
-            System.out.println("Press 2 if you want to back to the home page.");
-            System.out.println("Press any other key to exit.");
+            System.out.println("1. if you want to try again.");
+            System.out.println("2. if you want to back to the home page.");
+            System.out.println("3. Exit");
             String ch = sc.nextLine();
             switch(ch)
             {
@@ -31,6 +31,9 @@ public class Employee{
                                s.print();
                                break;
                             
+                    case "3" : System.out.println("Thank you for coming.Visit again soon.");    
+                               System.exit(0);
+                               
                     default : System.out.println("Thanks for coming.Visit again soon");
                               System.exit(0);
                               break;               

@@ -70,14 +70,14 @@ public class Customer{
                               break; 
             } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&&!(n.equals("5")));
-       /* System.out.print(sc.nextLine());
+        System.out.print(sc.nextLine());
         System.out.println("Do you want ot continue(Y/N) ?");
         n1 = sc.nextLine();
         if(n1.equals("Y")||n1.equals("y"))
             Display();
         else
             System.out.println("Thank you for coming.Visit again .");
-            System.exit(0);*/
+            System.exit(0);
     }
 
 	 static void DailyUses(){
@@ -197,8 +197,11 @@ public class Customer{
 		c.Table(s);
 		show(s);
 	}
-    
-	static void show(String a) {
+    static void stocks(int i) {
+    	n = sc.nextInt();
+    	c.validate_n(i, n);
+    }
+    static void show(String a) {
 		String f;
 		do {
 		System.out.print("Would you like to continue (Y/N) : ");
@@ -206,9 +209,11 @@ public class Customer{
 		if(f.equals("Y")||f.equals("y"))
 		{
 			System.out.println("Select ID : ");
-			stock(a);
-			c.validate_n(id, n);
-			//c.cart(name, phno, id, n);
+		    id = sc.nextInt();
+		    c.validate_id(a, id);
+		    System.out.println("Qunatity");
+		    n = sc.nextInt();
+		    c.validate_n(id, n);
 		}
 		if(f.equals("N")||f.equals("n")){
 			String n;
@@ -231,39 +236,4 @@ public class Customer{
 		
     }while(!(f.equals("Y"))&& !(f.equals("y"))&&!(f.equals("N"))&&!(f.equals("n")));
 }	
-	static void stock(String a) {
-		id = sc.nextInt();
-        c.validate_id(a, id);
-	}
-	static void stocks(int i) {
-		n = sc.nextInt();
-		c.validate_n(i,n);
-	}
-	
-	static void call(int i) {
-		String f;
-		do {
-		    System.out.println("Select");
-		    System.out.println("1. Take the avaliable stock");
-		    System.out.println("2. Menu");
-		    System.out.println("3. Exit");
-		    f = sc.nextLine();
-		    switch(f)
-            {
-                    case "1" : System.out.println("Enter Quantity");
-                               stocks(i);
-                               break;
-
-                    case "2" : Display();
-                               break;
-            
-                    case "3" : System.out.println("Thank u fr visiting");
-			                   System.exit(0);
-			                   
-                    default : System.out.println("The number you entered is incorrect.Please try again.");
-                              break; 
-                    } 
-        }while(!(f.equals("1"))&&!(f.equals("2"))&&!(f.equals("3")));
-
-		}
-	}
+}

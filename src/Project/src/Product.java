@@ -1,12 +1,17 @@
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import javax.sql.rowset.JdbcRowSet;
+import javax.sql.rowset.RowSetProvider;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 public class Product implements Connectivity {
-	static String sql;
 	static Product p = new Product();
 	static Customer cus = new Customer();
+	static Scanner scan = new Scanner(System.in);
 	static void Table(String x)
 	{
 		try {
@@ -22,19 +27,16 @@ public class Product implements Connectivity {
 	     }
 	}
 	static void validate_id(String a, int id) {
+		int i;
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select *from items where ID = '"+id+"'and category = '"+a+"'");
-			if(r.next()) {
-				System.out.println("Quantity : ");
-				cus.stocks(id);
-			}
-			else {
+			if(!r.next()) {
 				System.out.println("Enter valid ID : ");
-				cus.stock(a);
+				i = scan.nextInt();
+				validate_id(a,i);
 			}
-		}catch(Exception e)
-		{
+		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
@@ -42,19 +44,20 @@ public class Product implements Connectivity {
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select Current_Stock from items where ID = '"+id+"'");
-			while(r.next()) {
-		    	if(n <= r.getInt("Current_Stock")) {
-		    		sql = "Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+id+"'";
-		    		s.executeUpdate(sql);
-		    	}
-		    	else if(n>r.getInt("Current_Stock")){
-		    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
-		    		cus.call(id);
-		    	}
-		    	else {
-		    		System.out.println("Check your input");
-		    	}
-		    }
+				while(r.next()) {
+					if(n>r.getInt("Current_Stock"))
+					{
+			    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
+			    		System.out.print("Please enter Quantity : ");
+			    		/*int nos = scan.nextInt();
+			    		validate_n(id,nos);*/
+			    		cus.stocks(id);
+				    }		
+				    else if(n <= r.getInt("Current_Stock")) {
+				    	Statement s1 = (Statement) p.Connect();
+						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+id+"'");
+					}
+		          }
 		}catch(Exception e) {
 			System.out.println(e);
 		}
