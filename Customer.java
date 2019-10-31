@@ -70,14 +70,14 @@ public class Customer{
                               break; 
             } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&&!(n.equals("5")));
-        System.out.print(sc.nextLine());
+        /*System.out.print(sc.nextLine());
         System.out.println("Do you want ot continue(Y/N) ?");
         n1 = sc.nextLine();
         if(n1.equals("Y")||n1.equals("y"))
             Display();
         else
             System.out.println("Thank you for coming.Visit again .");
-            System.exit(0);
+            System.exit(0);*/
     }
      static void ask() {
     	 String n;
@@ -223,7 +223,7 @@ public class Customer{
 	}
     static void stocks(int i) {
     	n = sc.nextInt();
-    	c.validate_n(i, n);
+    	c.validate_n(n);
     }
     static void show(String a) {
 		String f;
@@ -237,7 +237,9 @@ public class Customer{
 		    c.validate_id(a, id);
 		    System.out.println("Qunatity");
 		    n = sc.nextInt();
-		    c.validate_n(id, n);
+		    c.validate_n(n);
+		    String e = sc.nextLine();
+		    show();
 		}
 		if(f.equals("N")||f.equals("n")){
 			String n;
@@ -259,5 +261,24 @@ public class Customer{
 		}
 		
     }while(!(f.equals("Y"))&& !(f.equals("y"))&&!(f.equals("N"))&&!(f.equals("n")));
-}	
+    }
+    
+    static void show() {
+    	String n;
+		do {
+			System.out.println("Select:");
+			System.out.println("1. Menu");
+			System.out.println("2. Exit");
+			n = sc.nextLine();
+			switch(n) 
+			{
+			case "1" : Display();
+			           break;
+			case "2" : System.out.println("Thank u fr visiting");
+			           System.exit(0);
+			default  : System.out.println("Please enter valid input : ");
+			           break;
+			}
+		}while(!(n.equals("1"))&&!(n.equals("2")));	
+    }
 }

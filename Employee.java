@@ -3,6 +3,7 @@ import java.util.*;
 public class Employee{
     static Scanner sc = new Scanner(System.in); 
     static Store s = new Store();
+    static Stock a = new Stock();
     static String p = "12345678";
     
     public static void Print(){
@@ -42,12 +43,14 @@ public class Employee{
     static void options() {
     	String n;
     	do {
-    		System.out.println("1. Out Of Stock");
-    		System.out.println("2. Exit");
+    		System.out.println("1. Stock");
+    		System.out.println("2. Graph");
+    		System.out.println("3. Out Of Stock");
+    		System.out.println("4. Customer Requests");
     		n = sc.nextLine();
     		switch(n) {
     		
-    		case "1" : s.shortage();
+    		case "1" : a.view();
     		           break;
     		
     		case "2" : System.out.println("Thank you for coming.Visit again soon.");    
