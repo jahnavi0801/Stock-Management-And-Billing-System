@@ -1,45 +1,93 @@
 import java.util.*;
 
 public class Employee{
-    public String name;
-    public int id;
     static Scanner sc = new Scanner(System.in); 
+    static Store s = new Store();
+    static Stock a = new Stock();
+    static String p = "12345678";
     
-    public void Print(){
-        
-        String n,n1;
-        System.out.println("Enter the password : ");
-        String p = sc.nextLine();
-        if(p.equals("12345678"))
-        {
-            System.out.println("Entered successfully!!");
-            
+    public static void Print(){
+    	System.out.println("****Welcome****");
+        System.out.println();
+        System.out.println("Please Enter Password : ");
+        String p1 = sc.nextLine();
+        if(p1.equals(p)) {
+        	System.out.println("Welcome to the store");
+        	options();
         }
-        else
-        {
-            System.out.println("The password is incorrect.");
-            System.out.println("1. if you want to try again.");
-            System.out.println("2. if you want to back to the home page.");
-            System.out.println("3. Exit");
-            String ch = sc.nextLine();
-            switch(ch)
-            {
-                    case "1" : Print();
-                               break;
-
-                    case "2" : StockMAnagementAndBilling s = new StockMAnagementAndBilling();
-                               s.print();
-                               break;
-                            
-                    case "3" : System.out.println("Thank you for coming.Visit again soon.");    
-                               System.exit(0);
-                               
-                    default : System.out.println("Thanks for coming.Visit again soon");
-                              System.exit(0);
-                              break;               
-            }                                                  
+        else {
+        	String n;
+            do {
+            	System.out.println("1. To re-enter");
+            	System.out.println("2. Main Page");
+            	System.out.println("3. Exit");
+            	n = sc.nextLine();
+            	switch(n) {
+            	
+            	case "1" : Print();
+            	           break;
+            	           
+            	case "2" : StockMAnagementAndBilling sb = new StockMAnagementAndBilling();
+            	           sb.print();
+            	           break;
+            	           
+            	case "3" : System.out.println("Thank you for coming.Visit again soon.");    
+                           System.exit(0);
+                 
+            	default : System.out.println("The number you entered is incorrect.Please try again.");
+                          break;
+            	}
+            }while(n!="1" && n!="2" && n!="3");       		
         }
-        sc.close();
+}
+    static void options() {
+    	String n;
+    	do {
+    		System.out.println("1. Stock");
+    		System.out.println("2. Graph");
+    		System.out.println("3. Updation and Out Of Stock");
+    		System.out.println("4. Customer Requests");
+    		n = sc.nextLine();
+    		switch(n) {
+    		
+    		case "1" : a.view();
+    		           break;
+    		
+    		case "3" : s.ask();
+	                   break;
+	
+    		case "4" : System.out.println("Thank you for coming.Visit again soon.");    
+                       System.exit(0);
+                       
+    		 default : System.out.println("Thanks for coming.Visit again soon");
+                       System.exit(0);
+                       break;         
+    		}
+    	}while(n!="1" && n!="2" && n!="3");
     }
-   
+    static void call() {
+   	 String n;
+   	 do {
+   		 System.out.println("1. Countiue");
+   		 System.out.println("2. Main page");
+   		 System.out.println("3. Exit");
+   		 n = sc.nextLine();
+   		 switch(n) {
+   		 case "1" : Print();
+   		            break;
+   		
+   		 case "2" : StockMAnagementAndBilling sb = new StockMAnagementAndBilling();
+   		            sb.print();
+   		            break;
+   		            
+   		 case "3" : System.out.println("Thank you for coming.Visit again .");    
+                    System.exit(0);
+            
+   		 default : System.out.println("The number you entered is incorrect.Please try again.");
+                   break; 
+   		 }
+   	 }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3")));
+   	 String e = sc.nextLine();
+    }
+	
 }           

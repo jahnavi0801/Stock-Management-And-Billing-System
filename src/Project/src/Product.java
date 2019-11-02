@@ -12,6 +12,7 @@ public class Product implements Connectivity {
 	static Product p = new Product();
 	static Customer cus = new Customer();
 	static Scanner scan = new Scanner(System.in);
+	static int i;
 	static void Table(String x)
 	{
 		try {
@@ -26,37 +27,65 @@ public class Product implements Connectivity {
 	    	System.out.println(e);
 	     }
 	}
-	static void validate_id(String a, int id) {
-		int i;
+	static void Table() {
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select *from items where ID = '"+id+"'and category = '"+a+"'");
+			ResultSet r = s.executeQuery("select *from items");
+		    while(r.next()) {
+		    		System.out.println(r.getInt("sno")+" "+r.getString("category")+" "+r.getString("Product_name")+" "+r.getInt("ID")+" "+r.getString("MRP")+" "+r.getString("Quantity")+" "+r.getString("DOM")+" "+r.getString("DOE")+" ");
+		    }
+	    }catch(Exception e) {
+	    	System.out.println(e);
+	    }
+	}
+    static void validate_id(String a) {
+    	//String k;
+    	try {
+    		Statement s = (Statement) p.Connect();
+			ResultSet r = s.executeQuery("select *from items WHERE category = '"+a+"'");
+		    while(r.next()) {
+		    		System.out.println(r.getInt("sno")+" "
+		            +r.getString("category")+" "+r.getString("Product_name")+" "
+		    		+r.getInt("ID")+" "+r.getString("MRP")+" "
+		            +r.getString("Quantity")+" "+r.getString("DOM")+" "+r.getString("DOE")+" "
+		            +r.getInt("Initial_stock")+r.getInt("Current_Stock")+" "+r.getInt("Threshold_stock"));
+		    }
+	    }catch(Exception e) {
+	    	System.out.println(e);
+	     }
+	}
+	static void validate_id(String a, int id) {
+		try {
+			Statement s = (Statement) p.Connect();
+			ResultSet r = s.executeQuery("select *from items where ID = '"+id+"'and category = '"+a+"' and Current_Stock>Threshold_stock");
 			if(!r.next()) {
 				System.out.println("Enter valid ID : ");
 				i = scan.nextInt();
 				validate_id(a,i);
 			}
+			else {
+				i = id;
+			}
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
-	static void validate_n(int id, int n) {
+	static void validate_n(int n) {
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select Current_Stock from items where ID = '"+id+"'");
+			ResultSet r = s.executeQuery("select *from items where ID = '"+i+"'");
 				while(r.next()) {
 					if(n>r.getInt("Current_Stock"))
 					{
 			    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
 			    		System.out.print("Please enter Quantity : ");
-			    		/*int nos = scan.nextInt();
-			    		validate_n(id,nos);*/
-			    		cus.stocks(id);
+			    		int nos = scan.nextInt();
+			    		validate_n(nos);
 				    }		
 				    else if(n <= r.getInt("Current_Stock")) {
 				    	Statement s1 = (Statement) p.Connect();
-						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+id+"'");
-					}
+						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");					    
+				    }
 		          }
 		}catch(Exception e) {
 			System.out.println(e);

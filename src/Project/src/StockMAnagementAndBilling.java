@@ -1,10 +1,15 @@
 import java.util.*;
 
 class StockMAnagementAndBilling {
-    
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) 
+    {
+        System.out.println("Welcome To Store");
+        print();
+    }
     public static void print(){
-        Scanner sc = new Scanner(System.in);
-        String n;
+    	String n;
         do{
             System.out.println("Login as :");
             System.out.println("1. Customer");
@@ -14,12 +19,11 @@ class StockMAnagementAndBilling {
             switch(n)
             {
                 case "1" : Customer c = new Customer();
-                		   c.Details();	
-                           c.Display();  
-                           break;
+                           c.ask();
+                		   break;
 
                 case "2" : Employee e = new Employee();
-                           e.Print(); 
+                           e.call();
                            break;
 
                 case "3" : System.out.println("Thank you for coming.Visit again soon.");    
@@ -28,13 +32,7 @@ class StockMAnagementAndBilling {
                 default : System.out.println("Please try again : ");
                           break; 
             } 
-        }while(n!="1" && n!="2");
-        sc.close();
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Welcome To  ");
-        print();
+        }while(n!="1" && n!="2" && n!="3");
     }
 
 }
