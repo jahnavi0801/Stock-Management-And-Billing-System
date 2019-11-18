@@ -1,14 +1,15 @@
+import java.io.IOException;
 import java.util.*;
 
 class StockMAnagementAndBilling {
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         System.out.println("Welcome To Store");
         print();
     }
-    public static void print(){
+    public static void print() throws IOException{
     	String n;
         do{
             System.out.println("Login as :");

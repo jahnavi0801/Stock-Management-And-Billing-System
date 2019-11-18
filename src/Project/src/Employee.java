@@ -1,12 +1,15 @@
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Employee{
     static Scanner sc = new Scanner(System.in); 
     static Store s = new Store();
     static Stock a = new Stock();
+    static Graph g = new Graph();
     static String p = "12345678";
     
-    public static void Print(){
+    public static void Print() throws IOException{
     	System.out.println("****Welcome****");
         System.out.println();
         System.out.println("Please Enter Password : ");
@@ -40,35 +43,44 @@ public class Employee{
             }while(n!="1" && n!="2" && n!="3");       		
         }
 }
-    static void options() {
+    static void options() throws IOException{
     	String n;
     	do {
     		System.out.println("1. Stock");
     		System.out.println("2. Graph");
     		System.out.println("3. Updation and Out Of Stock");
     		System.out.println("4. Customer Requests");
+    		System.out.println("5. Main Page");
+    		System.out.println("6. Exit");
     		n = sc.nextLine();
     		switch(n) {
     		
     		case "1" : a.view();
     		           break;
     		
+    		case "2" : g.ask();
+        	           break;
+	
     		case "3" : s.ask();
 	                   break;
 	
-    		case "4" : System.out.println("Thank you for coming.Visit again soon.");    
+    		case "5" : StockMAnagementAndBilling sb = new StockMAnagementAndBilling();
+	                   sb.print();
+	                   break;
+	           			
+    		case "6" : System.out.println("Thank you for coming.Visit again soon.");    
                        System.exit(0);
                        
     		 default : System.out.println("Thanks for coming.Visit again soon");
                        System.exit(0);
                        break;         
     		}
-    	}while(n!="1" && n!="2" && n!="3");
+    	}while(n!="1" && n!="3" && n!="4" && n!="5" && n!="6");
     }
-    static void call() {
+    static void call() throws IOException{
    	 String n;
    	 do {
-   		 System.out.println("1. Countiue");
+   		 System.out.println("1. Proceed");
    		 System.out.println("2. Main page");
    		 System.out.println("3. Exit");
    		 n = sc.nextLine();

@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Stock {
@@ -5,12 +7,12 @@ public class Stock {
 	static Product p = new Product();
 	static String s;
 	
-static void view() {
+static void view() throws IOException{
 	p.Table();
 	search();
 }
 
-static void search() {
+static void search() throws IOException{
 	System.out.println("Would you like to search(Y/N)");
 	s = scan.nextLine();
 	if(s.equals("Y") || s.equals("y")) {
@@ -23,7 +25,7 @@ static void search() {
 		ask();
 	}	
 }
-static void ask() {
+static void ask() throws IOException{
 	String n;
 	do {
 		System.out.println("Select:");

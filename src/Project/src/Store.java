@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.mysql.jdbc.Statement;
@@ -9,7 +11,7 @@ public class Store implements Connectivity {
 	static Scanner scan = new Scanner(System.in);
 	static int i;
 
-	   static void ask() {
+	   static void ask() throws IOException{
 		   String n;
 			do {
 				System.out.println("Select:");
@@ -38,7 +40,7 @@ public class Store implements Connectivity {
 			}while(!(n.equals("1"))&&!(n.equals("2")) && !(n.equals("3")));	
 	   }
 
-	   static void call() {
+	   static void call() throws IOException{
 		       p.Table();
 			   System.out.print("Select ID : ");
 			   int id = scan.nextInt();
@@ -74,7 +76,7 @@ public class Store implements Connectivity {
 		   }
 	   }
 
-	   static void find() {
+	   static void find() throws IOException{
 		   shortage();
 		   System.out.println("Would u like to update (y/n)");
 		   String s = scan.nextLine();

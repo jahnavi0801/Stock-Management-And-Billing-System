@@ -13,6 +13,7 @@ public class Product implements Connectivity {
 	static Customer cus = new Customer();
 	static Scanner scan = new Scanner(System.in);
 	static int i;
+	static int nos;
 	static void Table(String x)
 	{
 		try {
@@ -79,23 +80,24 @@ public class Product implements Connectivity {
 					{
 			    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
 			    		System.out.print("Please enter Quantity : ");
-			    		int nos = scan.nextInt();
+			    		nos = scan.nextInt();
 			    		validate_n(nos);
 				    }		
 				    else if(n <= r.getInt("Current_Stock")) {
 				    	Statement s1 = (Statement) p.Connect();
-						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");					    
+						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");	
+						nos = n;
 				    }
 		          }
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
-	static void cart(String name,String phno, int id, int n) {
+	static void cart(String name,String phno) {
 		int sno = 1, cost = 0;
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
+			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+i+"'");
 		    PreparedStatement pt = p.person();
 		    pt.setInt(1, sno);
 		    pt.setString(2, name);
@@ -105,14 +107,14 @@ public class Product implements Connectivity {
 			while(r.next())
 		    {
 		    	String pn = r.getString("Product_name");
-		    	String list = pn +" - "+n;
+		    	String list = pn +" - "+nos;
 		    	pt.setString(4, list);
 		    }
-			ResultSet r1 = s.executeQuery("select MRP from items where ID = 11"); 
+			ResultSet r1 = s.executeQuery("select MRP from items where ID = '"+i+"'"); 
 			while(r1.next()) {
 				String t = r1.getString("MRP");
 				int mrp = Integer.parseInt(t.substring(4));
-				cost = cost + n*mrp;
+				cost = cost + nos*mrp;
 			}
 			pt.setInt(5, cost);
 	        pt.executeUpdate();

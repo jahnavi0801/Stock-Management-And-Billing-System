@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 import java.util.regex.Matcher;
@@ -17,26 +18,25 @@ public class Customer{
     	System.out.println("Enter your name :");
     	name = sc.nextLine();
     	System.out.println("Enter Your Phonenumber : ");
-    	input();
+    	String p = sc.nextLine();
+    	validate(p);
     }
-    static void input() {
-		String a = sc.nextLine();
-		set(a);
+    
+    static void validate(String s) {
+		Pattern p = Pattern.compile("\\d{10}");
+    	Matcher m = p.matcher(s);
+    	if(m.matches()) {
+    		phno = s;
+    	}
+    	else {
+    		System.out.println("Please enter valid Phnoenumber : ");
+    		phno = sc.nextLine();
+    		validate(phno);
+    	}
 	}
     
-    static void set(String s) {
-    	Pattern p = Pattern.compile("\\d{10}");
-    	Matcher m = p.matcher(s);
-    	if(m.matches())
-    		s = phno;
-    	else {
-            System.out.println("Please enter valid Phnoenumber : ");
-    		input();    		
-    	}
-    }
-    
-    static void Display(){
-        String n,n1;
+    static void Display() throws IOException{
+        String n;
         do{
             System.out.println("Select the item which you would like to buy.");
             System.out.println("1. Daily Uses");
@@ -79,10 +79,11 @@ public class Customer{
             System.out.println("Thank you for coming.Visit again .");
             System.exit(0);*/
     }
-     static void ask() {
+    
+     static void ask() throws IOException {
     	 String n;
     	 do {
-    		 System.out.println("1. Countiue");
+    		 System.out.println("1. Proceed");
     		 System.out.println("2. Main page");
     		 System.out.println("3. Exit");
     		 n = sc.nextLine();
@@ -104,7 +105,8 @@ public class Customer{
     		 }
     	 }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3")));
      }
-	 static void DailyUses(){
+     
+	 static void DailyUses() throws IOException{
         String n;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -137,7 +139,7 @@ public class Customer{
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
     }
 	
-	static void Food() {
+	static void Food() throws IOException {
     	String n;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -170,49 +172,56 @@ public class Customer{
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
 
 	}
-	static void Dental() {
+	
+	static void Dental() throws IOException {
 		s = "dental";
 		System.out.println("****DENTAL****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}
-	static void Bathing() {
+	
+	static void Bathing() throws IOException {
 		s = "bathing";
 		System.out.println("****BATHING****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}
-	static void Utilities() {
+	
+	static void Utilities() throws IOException {
 		s = "utilities";
 		System.out.println("****UTILITIES****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}
-	static void Dairy() {
+	
+	static void Dairy() throws IOException {
 		s = "dairy";
 		System.out.println("****DAIRY****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}	
-	static void Fruits() {
+	
+	static void Fruits() throws IOException {
 		s = "fruits";
 		System.out.println("****FRUITS****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}
-	static void Vegetables() {
+	
+	static void Vegetables() throws IOException {
 		s = "vegetables";
 		System.out.println("****VEGETABLES****");
 		System.out.println();
 		c.Table(s);
 		show(s);
 	}
-    static void Crockery() {
+	
+    static void Crockery() throws IOException {
     	System.out.println();
 		System.out.println("We have only kitchenware");
 		s = "kitchenware";
@@ -221,11 +230,13 @@ public class Customer{
 		c.Table(s);
 		show(s);
 	}
+    
     static void stocks(int i) {
     	n = sc.nextInt();
     	c.validate_n(n);
     }
-    static void show(String a) {
+    
+    static void show(String a) throws IOException {
 		String f;
 		do {
 		System.out.print("Would you like to continue (Y/N) : ");
@@ -238,6 +249,7 @@ public class Customer{
 		    System.out.println("Qunatity");
 		    n = sc.nextInt();
 		    c.validate_n(n);
+		    c.cart(name, phno);
 		    String e = sc.nextLine();
 		    show();
 		}
@@ -261,9 +273,9 @@ public class Customer{
 		}
 		
     }while(!(f.equals("Y"))&& !(f.equals("y"))&&!(f.equals("N"))&&!(f.equals("n")));
-    }
+  }
     
-    static void show() {
+    static void show() throws IOException {
     	String n;
 		do {
 			System.out.println("Select:");
