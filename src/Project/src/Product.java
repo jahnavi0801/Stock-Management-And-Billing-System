@@ -38,7 +38,6 @@ public class Product implements Connectivity {
 	    }
 	}
     static void validate_id(String a) {
-    	//String k;
     	try {
     		Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select *from items WHERE category = '"+a+"'");
@@ -116,7 +115,7 @@ public class Product implements Connectivity {
 		    	String t = r.getString("MRP");
 				int mrp = Integer.parseInt(t.substring(4));
 				cost = nos*mrp;
-				c = c + r.getString("Product_name") + "-" + nos + "-"+ cost+" ";
+				c = c + r.getString("Product_name") + "-" + nos +"-"+cost+"; ";
 				Totalcost = Totalcost + cost;
 		    }
 		}catch(Exception e) {
@@ -127,7 +126,7 @@ public class Product implements Connectivity {
 		return c;
 	}
 	
-	static void cart(int sno, String name, String phno) {
+	static void cart(int sno, String name, String phno, String cr) {
 		try {
 			PreparedStatement p1 = (PreparedStatement )p.person();
 		    p1.setInt(1, sno);
@@ -136,11 +135,13 @@ public class Product implements Connectivity {
 		    p1.setString(4, c);
 		    p1.setInt(5, Totalcost);
 		    p1.setInt(6, sno);
+		    p1.setString(7, cr);
 		    p1.executeUpdate();
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 		c = "";
+		Totalcost = 0;
 	}
 	static void receipt(int billno) {
 		try {
@@ -153,45 +154,4 @@ public class Product implements Connectivity {
 			System.out.println(e);
 		}
 	}
-	/*static void cart(String name,String phno,int sno){
-		int cost = 0;
-		try {
-			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+i+"'");
-		    PreparedStatement pt = p.person();
-		    pt.setInt(1, sno);
-		    pt.setString(2, name);
-			pt.setString(3, phno);
-			pt.setInt(6, sno);
-			while(r.next())
-		    {
-		    	String pn = r.getString("Product_name");
-		    	String list = pn +" - "+nos;
-		    	pt.setString(4, list);
-		    }
-			ResultSet r1 = s.executeQuery("select MRP from items where ID = '"+i+"'"); 
-			while(r1.next()) {
-				String t = r1.getString("MRP");
-				int mrp = Integer.parseInt(t.substring(4));
-				cost = cost + nos*mrp;
-			}
-			pt.setInt(5, cost);
-	        pt.executeUpdate();
-		}catch(Exception e) {
-	    	System.out.println(e);
-	    }
-		concat();
-	}
-	
-	static void concat() {
-		try {
-			Statement s = (Statement) p.merge();
-			ResultSet r = s.executeQuery("SELECT sno,name,phno,totalcost,billno,     GROUP_CONCAT(items) FROM cus_info GROUP BY billno;");
-			while(r.next()) {
-				System.out.println(r.getInt("sno") + " ," + r.getString("name") + " , " + r.getInt("phno") + " ," + r.getString("GROUP_CONCAT(items)") + " , " + r.getInt("totalcost") + " ," + r.getInt("billno") );
-			}
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-	}*/
 }

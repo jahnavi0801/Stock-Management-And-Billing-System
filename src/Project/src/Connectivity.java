@@ -19,7 +19,7 @@ public interface Connectivity {
     	try {
     		Class.forName("com.mysql.jdbc.Driver");
     		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/customer?useSSL=false","root","Josaa_16651");
-    		String sql = "insert into cus_info(sno, name, phno, items, totalcost, billno) values(?, ?, ?, ?, ?, ?)";
+    		String sql = "insert into cus_info(sno, name, phno, items, totalcost, billno, Customer_Requests) values(?, ?, ?, ?, ?, ?, ?)";
     		PreparedStatement ps = (PreparedStatement) c.prepareStatement(sql);
     		return ps;
     	}catch(Exception e) {

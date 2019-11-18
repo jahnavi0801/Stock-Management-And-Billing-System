@@ -268,8 +268,8 @@ public class Customer{
     	do {
     		System.out.println("Select:");
 			System.out.println("1. Continue");
-			System.out.println("2. bill");
-			System.out.println("4. Exit");
+			System.out.println("2. Bill");
+			System.out.println("3. Exit");
 			String e = sc.nextLine();
 			n = sc.nextLine();
 			String a = "";
@@ -283,10 +283,12 @@ public class Customer{
 			       
 			case "2" :{ 
 				       c.cost();
-				       c.cart(sno, name, phno);
-				       c.receipt(sno); 
-			          }
-			            break;
+				       String cr = request();
+				       c.cart(sno, name, phno, cr);
+				       c.receipt(sno);
+				       
+				      }
+			          break;
 				    
  			case "3" : System.out.println("Thank u fr visiting");
 			           System.exit(0);
@@ -297,6 +299,12 @@ public class Customer{
 		}while(!(n.equals("1"))&&!(n.equals("2")));	
     }
 			
+	static String request() {
+		System.out.println("Do you have any request : ");
+		String l = sc.nextLine();
+		return l;
+	}
+
 	static void show() throws Exception {
     	String n;
 		do {
