@@ -1,12 +1,19 @@
 import java.sql.ResultSet;
+import java.util.*;
+
+//import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.Statement;
+
+/*import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 import javax.sql.rowset.JdbcRowSet;
-import javax.sql.rowset.RowSetProvider;
+import javax.sql.rowset.RowSetProvider;*/
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.Statement;
+
+import java.sql.*;
 
 public class Product implements Connectivity {
 	static Product p = new Product();
@@ -17,11 +24,12 @@ public class Product implements Connectivity {
 	{
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select *from items WHERE category = '"+x+"'");
+			ResultSet r = s.executeQuery("select * from items WHERE Category = '"+x+"'");
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME     ID        MRP       QUANTITY        DOM         DOE     " );
 		    while(r.next()) {
-		    	if(r.getInt("Current_Stock") > r.getInt("Threshold_stock")) {
-		    		System.out.println(r.getInt("sno")+" "+r.getString("category")+" "+r.getString("Product_name")+" "+r.getInt("ID")+" "+r.getString("MRP")+" "+r.getString("Quantity")+" "+r.getString("DOM")+" "+r.getString("DOE")+" ");
-		    	}
+		    	if(r.getInt("Current_Stock") > r.getInt("Threshold_Stock")) {
+		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE"));
+			    } 
 		    }
 	    }catch(Exception e) {
 	    	System.out.println(e);
@@ -31,24 +39,21 @@ public class Product implements Connectivity {
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select *from items");
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID        MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
 		    while(r.next()) {
-		    		System.out.println(r.getInt("sno")+" "+r.getString("category")+" "+r.getString("Product_name")+" "+r.getInt("ID")+" "+r.getString("MRP")+" "+r.getString("Quantity")+" "+r.getString("DOM")+" "+r.getString("DOE")+" ");
-		    }
+		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE")+"        "  +r.getInt("Initial_Stock")+"            "+ r.getInt("Current_Stock")+"               "+r.getInt("Threshold_Stock")+ "                "+r.getInt("Total_Sales"));
+		    } 
 	    }catch(Exception e) {
 	    	System.out.println(e);
 	    }
 	}
     static void validate_id(String a) {
-    	//String k;
     	try {
     		Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select *from items WHERE category = '"+a+"'");
+			ResultSet r = s.executeQuery("select * from items WHERE Category = '"+a+"'");
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID        MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
 		    while(r.next()) {
-		    		System.out.println(r.getInt("sno")+" "
-		            +r.getString("category")+" "+r.getString("Product_name")+" "
-		    		+r.getInt("ID")+" "+r.getString("MRP")+" "
-		            +r.getString("Quantity")+" "+r.getString("DOM")+" "+r.getString("DOE")+" "
-		            +r.getInt("Initial_stock")+r.getInt("Current_Stock")+" "+r.getInt("Threshold_stock"));
+		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE")+"        "  +r.getInt("Initial_Stock")+"            "+ r.getInt("Current_Stock")+"               "+r.getInt("Threshold_Stock")+ "                "+r.getInt("Total_Sales"));
 		    }
 	    }catch(Exception e) {
 	    	System.out.println(e);
@@ -57,7 +62,7 @@ public class Product implements Connectivity {
 	static void validate_id(String a, int id) {
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select *from items where ID = '"+id+"'and category = '"+a+"' and Current_Stock>Threshold_stock");
+			ResultSet r = s.executeQuery("select * from items where ID = '"+id+"'and Category = '"+a+"' and Current_Stock>Threshold_Stock");
 			if(!r.next()) {
 				System.out.println("Enter valid ID : ");
 				i = scan.nextInt();
@@ -73,7 +78,7 @@ public class Product implements Connectivity {
 	static void validate_n(int n) {
 		try {
 			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select *from items where ID = '"+i+"'");
+			ResultSet r = s.executeQuery("select * from items where ID = '"+i+"'");
 				while(r.next()) {
 					if(n>r.getInt("Current_Stock"))
 					{
@@ -104,7 +109,7 @@ public class Product implements Connectivity {
 			sno++;
 			while(r.next())
 		    {
-		    	String pn = r.getString("Product_name");
+		    	String pn = r.getString("Product_Name");
 		    	String list = pn +" - "+n;
 		    	pt.setString(4, list);
 		    }
