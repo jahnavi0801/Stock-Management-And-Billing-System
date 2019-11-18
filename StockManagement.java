@@ -1,16 +1,14 @@
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.*;
 
 class StockManagement {
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException, SQLException 
-    {
+    public static void main(String[] args) throws IOException   {
         System.out.println("Welcome To Store");
         print();
     }
-    public static void print() throws IOException, SQLException{
+    public static void print() throws IOException{
     	String n;
         do{
             System.out.println("Login as :");

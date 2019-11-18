@@ -20,12 +20,17 @@ public class Product implements Connectivity {
 	static Customer cus = new Customer();
 	static Scanner scan = new Scanner(System.in);
 	static int i;
+	static int nos;
+	static int Totalcost = 0;
+    static String c = "";
+    static int bill;
+    
 	static void Table(String x)
 	{
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select * from items WHERE Category = '"+x+"'");
-			System.out.println("SRNO.  CATEGORY     PRODUCT NAME     ID        MRP       QUANTITY        DOM         DOE     " );
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME     ID       MRP       QUANTITY        DOM         DOE     " );
 		    while(r.next()) {
 		    	if(r.getInt("Current_Stock") > r.getInt("Threshold_Stock")) {
 		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE"));
@@ -39,7 +44,7 @@ public class Product implements Connectivity {
 		try {
 			Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select *from items");
-			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID        MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID       MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
 		    while(r.next()) {
 		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE")+"        "  +r.getInt("Initial_Stock")+"            "+ r.getInt("Current_Stock")+"               "+r.getInt("Threshold_Stock")+ "                "+r.getInt("Total_Sales"));
 		    } 
@@ -51,7 +56,7 @@ public class Product implements Connectivity {
     	try {
     		Statement s = (Statement) p.Connect();
 			ResultSet r = s.executeQuery("select * from items WHERE Category = '"+a+"'");
-			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID        MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
+			System.out.println("SRNO.  CATEGORY     PRODUCT NAME   ID       MRP       QUANTITY        DOM         DOE     INITIAL STOCK   CURRENT STOCK    THRESHOLD STOCK    TOTAL SALES" );
 		    while(r.next()) {
 		    		System.out.println(""+r.getInt("SrNo")+"    "+r.getString("Category")+" "+r.getString("Product_Name")+"   "+r.getInt("ID")+"      "+r.getString("MRP")+"     "+r.getString("Quantity")+"     "+r.getString("DOM")+"     "+r.getString("DOE")+"        "  +r.getInt("Initial_Stock")+"            "+ r.getInt("Current_Stock")+"               "+r.getInt("Threshold_Stock")+ "                "+r.getInt("Total_Sales"));
 		    }
@@ -82,48 +87,96 @@ public class Product implements Connectivity {
 				while(r.next()) {
 					if(n>r.getInt("Current_Stock"))
 					{
-			    		System.out.println("Avaliable Stock is only : "+ r.getInt("Current_Stock"));
-			    		System.out.print("Please enter Quantity : ");
+			    		System.out.println("Avaliable Stock : "+ r.getInt("Current_Stock"));
+			    		System.out.print("Please re-enter the Quantity : ");
 			    		int nos = scan.nextInt();
 			    		validate_n(nos);
 				    }		
 				    else if(n <= r.getInt("Current_Stock")) {
-				    	Statement s1 = (Statement) p.Connect();
-						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");					    
+				    //	Statement s1 = (Statement) p.Connect();
+						//s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");					    
+						//nos = n;
+				    	nos = n;
 				    }
 		          }
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
-	static void cart(String name,String phno, int id, int n) {
-		int sno = 1, cost = 0;
+	
+	static void Update() {
 		try {
-			Statement s = (Statement) p.Connect();
-			ResultSet r = s.executeQuery("select Product_name from items WHERE ID = '"+id+"'");
-		    PreparedStatement pt = p.person();
-		    pt.setInt(1, sno);
-		    pt.setString(2, name);
-			pt.setString(3, phno);
-			pt.setInt(6, sno);
-			sno++;
-			while(r.next())
-		    {
-		    	String pn = r.getString("Product_Name");
-		    	String list = pn +" - "+n;
-		    	pt.setString(4, list);
-		    }
-			ResultSet r1 = s.executeQuery("select MRP from items where ID = 11"); 
-			while(r1.next()) {
-				String t = r1.getString("MRP");
-				int mrp = Integer.parseInt(t.substring(4));
-				cost = cost + n*mrp;
-			}
-			pt.setInt(5, cost);
-	        pt.executeUpdate();
+			Statement s1 = (Statement) p.Connect();
+			s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+nos+"' WHERE ID = '"+i+"'");	
 		}catch(Exception e) {
-	    	System.out.println(e);
-	    }
+			System.out.println(e);
+		}
+	}
+	
+	static int bn() {
+		try {
+			Statement s = (Statement) p.merge();
+			ResultSet r = s.executeQuery("select sno from cus_info order by sno desc limit 1");
+			while(r.next()) {
+				int sno = r.getInt("sno");
+				//System.out.println(sno);
+				bill = sno+1;
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return bill;
+	}
+	
+	static void cost() {
+		int cost = 0;
+		//System.out.println("yo");
+		try {
+			Statement s1 = (Statement) p.Connect();
+			ResultSet r = s1.executeQuery("select Product_Name, MRP from items WHERE ID = '"+i+"'");
+		    while(r.next()) {
+		    	String t = r.getString("MRP");
+		    	int mrp = Integer.parseInt(t.substring(4));
+				cost = nos*mrp;
+				c = c + r.getString("Product_Name") + "-" + nos +"-"+cost+"; ";
+				Totalcost = Totalcost + cost;
+		    }
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	    System.out.println(c);
+	    System.out.println("Total cost : " + Totalcost);
+		//return c;
+	}
+	
+	static void cart(int sno, String name, String phno, String cr) {
+		try {
+			PreparedStatement p1 = (PreparedStatement )p.person();
+		    p1.setInt(1, sno);
+		    p1.setString(2, name);
+		    p1.setString(3, phno);
+		    p1.setString(4, c);
+		    p1.setInt(5, Totalcost);
+		    p1.setInt(6, sno);
+		    p1.setString(7, cr);
+		    p1.executeUpdate();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		c = "";
+		Totalcost = 0;
+	}
+	
+	static void receipt(int billno) {
+		try {
+			Statement s = (Statement) p.merge();
+			ResultSet r = s.executeQuery("select *from cus_info where billno = '"+billno+"'");
+			while(r.next()) {
+				System.out.println(r.getInt("sno")+" "+r.getString("name")+" "+r.getString("phno")+" "+r.getString("items")+" "+r.getInt("totalcost")+" "+r.getInt("billno"));
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 	}
     
 }

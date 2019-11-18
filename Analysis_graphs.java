@@ -10,6 +10,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.jdbc.JDBCCategoryDataset;
 
+//import com.mysql.cj.jdbc.Statement;
+//import java.sql.*;
+
 public class Analysis_graphs {
 	static Scanner scan = new Scanner(System.in);
     private static JDBCCategoryDataset dataset;
@@ -53,18 +56,21 @@ public class Analysis_graphs {
 				case "8" : ask();
 					       break;
 		                   
-				case "9" : System.out.println("Thank u fr visiting");
+				case "9" : System.out.println("Thank you for visiting");
 		                   System.exit(0);
 		                   
 				default  : System.out.println("Please enter valid input : ");
 				           break;
 				}
-			}while(!(n.equals("1"))&&!(n.equals("2")) && !(n.equals("3")));	
+			}while(!(n.equals("1"))&&!(n.equals("2")) && !(n.equals("3")) && !(n.equals("4")) && !(n.equals("5")) && !(n.equals("6")) && !(n.equals("7")) );
+			
+			System.out.println("The requested graph has been plotted.");
 	   }
+	
 	static void view(String a) throws IOException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-    		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/products?useSSL=false","root","Josaa_16651");
+    		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/products","root","adhyarujinal2000");
     		dataset = new JDBCCategoryDataset(c);
             dataset.executeQuery("SELECT Product_Name,Total_Sales from items WHERE Category = '"+a+"'");   
     	}catch(Exception e) {
@@ -72,12 +78,12 @@ public class Analysis_graphs {
     	}
 		JFreeChart barChart = ChartFactory.createBarChart(
                 a,
-                "product",
-                "sales",
+                "Product",
+                "Sales",
                 dataset,
                 PlotOrientation.VERTICAL,
                 false, true, false);
 
-        ChartUtilities.saveChartAsPNG(new File("sales.png"), barChart, 450, 400);
+        ChartUtilities.saveChartAsPNG(new File("sales.png"), barChart, 800, 800);
     }
 } 

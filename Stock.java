@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Stock {
@@ -7,11 +6,21 @@ public class Stock {
 	static Product p = new Product();
 	static String s;
 	static String a1;
-static void search() throws IOException, SQLException {
-	do {
-	System.out.println("Would you like to search a category(Y/N) ?");
-	s = scan.nextLine();
 	
+	static void view() throws IOException{
+		p.Table();
+		System.out.println("Would you like to search a category(Y/N) : ");
+		s = scan.nextLine();
+		if(s.equals("Y") || s.equals("y"))
+			search();
+		else
+			ask();
+	}
+
+static void search() throws IOException{
+	
+	//System.out.println("Would you like to search a category(Y/N) : ");
+	//s = scan.nextLine();
 		System.out.println("Enter category : ");
 		String a = scan.nextLine();
 		if(a.equals("Dental"))
@@ -29,22 +38,18 @@ static void search() throws IOException, SQLException {
 		else if(a.equals("Kitchenware")) 
 			a1 = "Kitchenware";
 		else {
-			System.out.println("Enter valid s");
+			System.out.println("Enter valid category ");
+			search();
 		}
-		System.out.println(a1);
+		System.out.println("    ****" + a1 + "****");
 		p.validate_id(a1);	
 		ask();
 	
-	}while(s.equals("Y") || s.equals("y"));
-	if(s.equals("N") || s.equals("n")) {
-		ask();
+	 
 	}
-}
-static void view() throws IOException, SQLException {
-	p.Table();
-	search();
-}
-static void ask() throws IOException, SQLException {
+
+
+static void ask() throws IOException{
 	String n;
 	do {
 		System.out.println("Select:");
@@ -56,7 +61,7 @@ static void ask() throws IOException, SQLException {
 		case "1" : Employee e = new Employee();
 		           e.options();
 		           break;
-		case "2" : System.out.println("Thank you for coming.Visit again soon.");
+		case "2" : System.out.println("Thank you for visiting.");
 		           System.exit(0);
 		default  : System.out.println("Please enter a valid input : ");
 		           break;
