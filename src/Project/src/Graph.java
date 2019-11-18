@@ -2,18 +2,14 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.jdbc.JDBCCategoryDataset;
 
-import com.mysql.jdbc.Statement;
 
 public class Graph {
 	static Scanner scan = new Scanner(System.in);
@@ -34,7 +30,7 @@ public class Graph {
 				n = scan.nextLine();
 				switch(n) 
 				{
-				case "1" : view("dental");
+				case "1" : view("bathing");
 				           break;
 				           
 				case "2" : view("dental");

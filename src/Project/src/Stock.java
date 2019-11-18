@@ -7,12 +7,12 @@ public class Stock {
 	static Product p = new Product();
 	static String s;
 	
-static void view() throws IOException{
+static void view() throws Exception{
 	p.Table();
 	search();
 }
 
-static void search() throws IOException{
+static void search() throws Exception{
 	System.out.println("Would you like to search(Y/N)");
 	s = scan.nextLine();
 	if(s.equals("Y") || s.equals("y")) {
@@ -25,7 +25,7 @@ static void search() throws IOException{
 		ask();
 	}	
 }
-static void ask() throws IOException{
+static void ask() throws Exception{
 	String n;
 	do {
 		System.out.println("Select:");

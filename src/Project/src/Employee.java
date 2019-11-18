@@ -9,7 +9,7 @@ public class Employee{
     static Graph g = new Graph();
     static String p = "12345678";
     
-    public static void Print() throws IOException{
+    public static void Print() throws Exception{
     	System.out.println("****Welcome****");
         System.out.println();
         System.out.println("Please Enter Password : ");
@@ -43,7 +43,7 @@ public class Employee{
             }while(n!="1" && n!="2" && n!="3");       		
         }
 }
-    static void options() throws IOException{
+    static void options() throws Exception{
     	String n;
     	do {
     		System.out.println("1. Stock");
@@ -77,7 +77,7 @@ public class Employee{
     		}
     	}while(n!="1" && n!="3" && n!="4" && n!="5" && n!="6");
     }
-    static void call() throws IOException{
+    static void call() throws Exception{
    	 String n;
    	 do {
    		 System.out.println("1. Proceed");

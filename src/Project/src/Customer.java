@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 
 import java.util.regex.Matcher;
@@ -12,14 +11,18 @@ public class Customer{
     static Product c = new Product();
 	private static String name;
 	private static String phno;
+	static int sno = 0;
     static Scanner sc = new Scanner(System.in);
     
     public static void Details() {
+    	sno = c.bn();
+    	System.out.println(sno);
     	System.out.println("Enter your name :");
     	name = sc.nextLine();
     	System.out.println("Enter Your Phonenumber : ");
     	String p = sc.nextLine();
     	validate(p);
+    	
     }
     
     static void validate(String s) {
@@ -35,7 +38,7 @@ public class Customer{
     	}
 	}
     
-    static void Display() throws IOException{
+    static void Display() throws Exception{
         String n;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -80,7 +83,7 @@ public class Customer{
             System.exit(0);*/
     }
     
-     static void ask() throws IOException {
+     static void ask() throws Exception {
     	 String n;
     	 do {
     		 System.out.println("1. Proceed");
@@ -106,7 +109,7 @@ public class Customer{
     	 }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3")));
      }
      
-	 static void DailyUses() throws IOException{
+	 static void DailyUses() throws Exception{
         String n;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -139,7 +142,7 @@ public class Customer{
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
     }
 	
-	static void Food() throws IOException {
+	static void Food() throws Exception {
     	String n;
         do{
             System.out.println("Select the item which you would like to buy.");
@@ -173,7 +176,7 @@ public class Customer{
 
 	}
 	
-	static void Dental() throws IOException {
+	static void Dental() throws Exception {
 		s = "dental";
 		System.out.println("****DENTAL****");
 		System.out.println();
@@ -181,7 +184,7 @@ public class Customer{
 		show(s);
 	}
 	
-	static void Bathing() throws IOException {
+	static void Bathing() throws Exception {
 		s = "bathing";
 		System.out.println("****BATHING****");
 		System.out.println();
@@ -189,7 +192,7 @@ public class Customer{
 		show(s);
 	}
 	
-	static void Utilities() throws IOException {
+	static void Utilities() throws Exception {
 		s = "utilities";
 		System.out.println("****UTILITIES****");
 		System.out.println();
@@ -197,7 +200,7 @@ public class Customer{
 		show(s);
 	}
 	
-	static void Dairy() throws IOException {
+	static void Dairy() throws Exception {
 		s = "dairy";
 		System.out.println("****DAIRY****");
 		System.out.println();
@@ -205,7 +208,7 @@ public class Customer{
 		show(s);
 	}	
 	
-	static void Fruits() throws IOException {
+	static void Fruits() throws Exception {
 		s = "fruits";
 		System.out.println("****FRUITS****");
 		System.out.println();
@@ -213,7 +216,7 @@ public class Customer{
 		show(s);
 	}
 	
-	static void Vegetables() throws IOException {
+	static void Vegetables() throws Exception {
 		s = "vegetables";
 		System.out.println("****VEGETABLES****");
 		System.out.println();
@@ -221,7 +224,7 @@ public class Customer{
 		show(s);
 	}
 	
-    static void Crockery() throws IOException {
+    static void Crockery() throws Exception {
     	System.out.println();
 		System.out.println("We have only kitchenware");
 		s = "kitchenware";
@@ -236,7 +239,7 @@ public class Customer{
     	c.validate_n(n);
     }
     
-    static void show(String a) throws IOException {
+    static void show(String a) throws Exception {
 		String f;
 		do {
 		System.out.print("Would you like to continue (Y/N) : ");
@@ -249,33 +252,52 @@ public class Customer{
 		    System.out.println("Qunatity");
 		    n = sc.nextInt();
 		    c.validate_n(n);
-		    c.cart(name, phno);
-		    String e = sc.nextLine();
+		    end();
+		    //String e = sc.nextLine();
 		    show();
 		}
 		if(f.equals("N")||f.equals("n")){
-			String n;
-			do {
-				System.out.println("Select:");
-				System.out.println("1. Menu");
-				System.out.println("2. Exit");
-				n = sc.nextLine();
-				switch(n) 
-				{
-				case "1" : Display();
-				           break;
-				case "2" : System.out.println("Thank u fr visiting");
-				           System.exit(0);
-				default  : System.out.println("Please enter valid input : ");
-				           break;
-				}
-			}while(!(n.equals("1"))&&!(n.equals("2")));
+			show();
 		}
 		
     }while(!(f.equals("Y"))&& !(f.equals("y"))&&!(f.equals("N"))&&!(f.equals("n")));
-  }
+   }
     
-    static void show() throws IOException {
+    static void end() throws Exception {
+    	String n;
+    	do {
+    		System.out.println("Select:");
+			System.out.println("1. Continue");
+			System.out.println("2. bill");
+			System.out.println("4. Exit");
+			String e = sc.nextLine();
+			n = sc.nextLine();
+			String a = "";
+			switch(n) 
+			{
+			case "1" : {
+				        c.cost();
+				        Display();
+				       }
+			           break;
+			       
+			case "2" :{ 
+				       c.cost();
+				       c.cart(sno, name, phno);
+				       c.receipt(sno); 
+			          }
+			            break;
+				    
+ 			case "3" : System.out.println("Thank u fr visiting");
+			           System.exit(0);
+			           
+			default  : System.out.println("Please enter valid input : ");
+			           break;
+			}
+		}while(!(n.equals("1"))&&!(n.equals("2")));	
+    }
+			
+	static void show() throws Exception {
     	String n;
 		do {
 			System.out.println("Select:");

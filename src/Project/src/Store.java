@@ -11,7 +11,7 @@ public class Store implements Connectivity {
 	static Scanner scan = new Scanner(System.in);
 	static int i;
 
-	   static void ask() throws IOException{
+	   static void ask() throws Exception{
 		   String n;
 			do {
 				System.out.println("Select:");
@@ -40,7 +40,7 @@ public class Store implements Connectivity {
 			}while(!(n.equals("1"))&&!(n.equals("2")) && !(n.equals("3")));	
 	   }
 
-	   static void call() throws IOException{
+	   static void call() throws Exception{
 		       p.Table();
 			   System.out.print("Select ID : ");
 			   int id = scan.nextInt();
@@ -76,7 +76,7 @@ public class Store implements Connectivity {
 		   }
 	   }
 
-	   static void find() throws IOException{
+	   static void find() throws Exception{
 		   shortage();
 		   System.out.println("Would u like to update (y/n)");
 		   String s = scan.nextLine();
