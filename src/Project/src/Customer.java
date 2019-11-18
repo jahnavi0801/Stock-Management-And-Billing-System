@@ -39,14 +39,13 @@ public class Customer{
 	}
     
     static void Display() throws Exception{
-        String n;
+    	String n;
         do{
             System.out.println("Select the item which you would like to buy.");
             System.out.println("1. Daily Uses");
             System.out.println("2. Food");
             System.out.println("3. Crockery");
-            System.out.println("4. Go back to the main page.");
-            System.out.println("5. Exit ");
+            System.out.println("4. Exit ");
             n = sc.nextLine();
             switch(n)
             {
@@ -62,17 +61,13 @@ public class Customer{
                                Crockery(); 
                                break;
 
-                    case "4" : StockMAnagementAndBilling s = new StockMAnagementAndBilling();
-                               s.print();
-                               break;
-
-                    case "5" : System.out.println("Thank you for coming.Visit again .");    
+                    case "4" : System.out.println("Thank you for coming.Visit again .");    
                                System.exit(0);
 
                     default : System.out.println("The number you entered is incorrect.Please try again.");
                               break; 
             } 
-        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&&!(n.equals("5")));
+        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
         /*System.out.print(sc.nextLine());
         System.out.println("Do you want ot continue(Y/N) ?");
         n1 = sc.nextLine();
@@ -265,9 +260,10 @@ public class Customer{
     
     static void end() throws Exception {
     	String n;
-    	do {
+    	c.cost();
+        do {
     		System.out.println("Select:");
-			System.out.println("1. Continue");
+    		System.out.println("1. Add to the cart");
 			System.out.println("2. Bill");
 			System.out.println("3. Exit");
 			String e = sc.nextLine();
@@ -276,24 +272,24 @@ public class Customer{
 			switch(n) 
 			{
 			case "1" : {
-				        c.cost();
+				        c.Update();
 				        Display();
-				       }
+			           }
 			           break;
-			       
+			         
 			case "2" :{ 
-				       c.cost();
 				       String cr = request();
 				       c.cart(sno, name, phno, cr);
 				       c.receipt(sno);
-				       
+				       System.out.println("Thank u fr visiting");
+			           System.exit(0);
 				      }
 			          break;
 				    
  			case "3" : System.out.println("Thank u fr visiting");
-			           System.exit(0);
-			           
-			default  : System.out.println("Please enter valid input : ");
+	                   System.exit(0);
+	        
+ 			default  : System.out.println("Please enter valid input : ");
 			           break;
 			}
 		}while(!(n.equals("1"))&&!(n.equals("2")));	

@@ -1,5 +1,3 @@
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.*;
 
 public class Employee{
@@ -7,6 +5,8 @@ public class Employee{
     static Store s = new Store();
     static Stock a = new Stock();
     static Graph g = new Graph();
+    static Customer_rq cr = new Customer_rq();
+    
     static String p = "12345678";
     
     public static void Print() throws Exception{
@@ -63,7 +63,13 @@ public class Employee{
 	
     		case "3" : s.ask();
 	                   break;
-	
+	                   
+    		case "4" :{ 
+    			       cr.ask();
+    		           System.out.println();
+    		           break;
+    		          }
+    			      
     		case "5" : StockMAnagementAndBilling sb = new StockMAnagementAndBilling();
 	                   sb.print();
 	                   break;

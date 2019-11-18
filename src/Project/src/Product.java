@@ -81,16 +81,21 @@ public class Product implements Connectivity {
 			    		validate_n(nos);
 				    }		
 				    else if(n <= r.getInt("Current_Stock")) {
-				    	Statement s1 = (Statement) p.Connect();
-						s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+n+"' WHERE ID = '"+i+"'");	
-						nos = n;
+				    	nos = n;
 				    }
 		          }
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
-	
+	static void Update() {
+		try {
+			Statement s1 = (Statement) p.Connect();
+			s1.executeUpdate("Update items set Current_Stock = Current_Stock - '"+nos+"' WHERE ID = '"+i+"'");	
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
 	static int bn() {
 		try {
 			Statement s = (Statement) p.merge();
@@ -106,7 +111,7 @@ public class Product implements Connectivity {
 		return bill;
 	}
 	
-	static String cost() {
+	static void cost() {
 		int cost = 0;
 		try {
 			Statement s1 = (Statement) p.Connect();
@@ -123,7 +128,7 @@ public class Product implements Connectivity {
 		}
 	    System.out.println(c);
 	    System.out.println(Totalcost);
-		return c;
+		//return c;
 	}
 	
 	static void cart(int sno, String name, String phno, String cr) {
