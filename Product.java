@@ -144,7 +144,8 @@ public class Product implements Connectivity {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-		System.out.println("** Your cart(Product_Name - Quantity in units - cost) **");
+		System.out.println();
+		System.out.println("** Your cart(Product_Name-Quantity in units-cost) **");
 	    System.out.println(c);
 	    System.out.println("Total cost : " + Totalcost);
 		//return c;
@@ -172,9 +173,11 @@ public class Product implements Connectivity {
 		try {
 			Statement s = (Statement) p.merge();
 			ResultSet r = s.executeQuery("select *from cus_info where billno = '"+billno+"'");
-			System.out.println("Sr_No Name  Phn_No Product_Name Quantity  Total_Cost Bill_No");
+			System.out.println();
+			System.out.println("****Your bill is displayed below.****");
+			System.out.println("BILL_NO  NAME     PHONE_NUMBER   TOTAL_COST    PRODUCT_NAME-QUANTITY-COST ");
 			while(r.next()) {
-				System.out.println(r.getInt("sno")+" "+r.getString("name")+" "+r.getString("phno")+" "+r.getString("items")+" "+r.getInt("totalcost")+" "+r.getInt("billno"));
+				System.out.println("  "+ r.getInt("billno")+"     "+r.getString("name")+"     "+r.getString("phno")+"      "+r.getInt("totalcost")+"      "+r.getString("items"));
 			}
 		}catch(Exception e) {
 			System.out.println(e);

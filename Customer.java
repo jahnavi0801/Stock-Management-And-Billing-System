@@ -168,8 +168,7 @@ public class Customer{
 	    	String n;
 	    	System.out.println();
 	        do{
-	        	System.out.println();
-	            System.out.println("Select the item you would like to buy.");
+	        	System.out.println("Select the item you would like to buy.");
 	            System.out.println("1. Dairy");
 	            System.out.println("2. Fruits");
 	            System.out.println("3. Vegetables");
@@ -203,6 +202,7 @@ public class Customer{
 		
 		static void Dental() throws IOException{
 			s = "   Dental  ";
+			System.out.println();
 			System.out.println("****DENTAL****");
 			System.out.println();
 			c.Table(s);
@@ -210,6 +210,7 @@ public class Customer{
 		}
 		static void Bathing() throws IOException {
 			s = "  Bathing  ";
+			System.out.println();
 			System.out.println("****BATHING****");
 			System.out.println();
 			c.Table(s);
@@ -217,6 +218,7 @@ public class Customer{
 		}
 		static void Utilities() throws IOException {
 			s = " Utilities ";
+			System.out.println();
 			System.out.println("****UTILITIES****");
 			System.out.println();
 			c.Table(s);
@@ -224,6 +226,7 @@ public class Customer{
 		}
 		static void Dairy() throws IOException {
 			s = "   Dairy   ";
+			System.out.println();
 			System.out.println("****DAIRY****");
 			System.out.println();
 			c.Table(s);
@@ -231,22 +234,25 @@ public class Customer{
 		}	
 		static void Fruits() throws IOException {
 			s = "   Fruits  ";
-			System.out.println("Choose from our fruits");
+			System.out.println();
 			System.out.println("****FRUITS****");
+			System.out.println();
 			c.Table(s);
 			show(s);
 		}
 		static void Vegetables() throws IOException {
 			s = " Vegetables";
-			System.out.println("Choose from our vegetables");
+			System.out.println();
 			System.out.println("****VEGETABLES****");
+			System.out.println();
 			c.Table(s);
 			show(s);
 		}
 	    static void Crockery() throws IOException {
-			System.out.println("We only have Kitchenware");
 			s = "Kitchenware";
+			System.out.println();
 			System.out.println("****KITCHENWARE****");
+			System.out.println();
 			c.Table(s);
 			show(s);
 		}
@@ -266,7 +272,7 @@ public class Customer{
 				System.out.println("Enter Product ID : ");
 			    id = sc.nextInt();
 			    c.validate_id(a, id);
-			    System.out.println("Enter Quantity");
+			    System.out.println("Enter Quantity in units :");
 			    n = sc.nextInt();
 			    c.validate_n(n);
 			    end();

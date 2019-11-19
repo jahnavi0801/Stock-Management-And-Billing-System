@@ -5,7 +5,9 @@ class StockManagement {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException   {
-        System.out.println("Welcome To \"The Departmental Store.\"");
+    	System.out.println("**************************************");
+        System.out.println(" Welcome To \"The Departmental Store.\"  ");
+        System.out.println("**************************************");
         print();
     }
     public static void print() throws IOException{

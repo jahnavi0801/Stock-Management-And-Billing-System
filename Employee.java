@@ -16,7 +16,6 @@ public class Employee {
         System.out.println("Please enter the Password : ");
         String p1 = sc.nextLine();
         if(p1.equals(p)) {
-        	System.out.println("Welcome to \"The Departmental Store.\"");
         	options();
         }
         else {
