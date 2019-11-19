@@ -10,17 +10,19 @@ public class Employee {
     static String p = "12345678";
     
     public static void Print() throws IOException {
+    	System.out.println();
     	System.out.println("****Welcome****");
         System.out.println();
         System.out.println("Please enter the Password : ");
         String p1 = sc.nextLine();
         if(p1.equals(p)) {
-        	System.out.println("Welcome to the store");
+        	System.out.println("Welcome to \"The Departmental Store.\"");
         	options();
         }
         else {
         	String n;
             do {
+            	System.out.println();
             	System.out.println("1. To re-enter.");
             	System.out.println("2. Main Page");
             	System.out.println("3. Exit");
@@ -34,7 +36,8 @@ public class Employee {
             	           sb.print();
             	           break;
             	           
-            	case "3" : System.out.println("Thank you for coming.Visit again soon.");    
+            	case "3" : System.out.println(); 
+            			   System.out.println("Thank you for coming.Visit again soon.");    
                            System.exit(0);
                  
             	default : System.out.println("The number you entered is incorrect.Please try again.");
@@ -46,6 +49,7 @@ public class Employee {
     static void options() throws IOException{
     	String n;
     	do {
+    		System.out.println();
     		System.out.println("Enter your choice : ");
     		System.out.println("1. Stock Data");
     		System.out.println("2. Sales Analysis (Graphs)");
@@ -79,7 +83,8 @@ public class Employee {
        				   sb.print();
        				   break;
        				   
-       		case "6" : System.out.println("Thank you for coming");
+       		case "6" : System.out.println();
+       				   System.out.println("Thank you for coming");
        				   System.exit(0); 
        				   break;
        				   
@@ -92,6 +97,7 @@ public class Employee {
     static void call() throws IOException{
    	 String n;
    	 do {
+   		 System.out.println();
    		 System.out.println("1. Proceed");
    		 System.out.println("2. Main page");
    		 System.out.println("3. Exit");
@@ -104,7 +110,8 @@ public class Employee {
    		            sb.print();
    		            break;
    		            
-   		 case "3" : System.out.println("Thank you for coming.Visit again .");    
+   		 case "3" : System.out.println();
+   			        System.out.println("Thank you for coming.Visit again .");    
                     System.exit(0);
             
    		 default : System.out.println("The number you entered is incorrect.Please try again.");

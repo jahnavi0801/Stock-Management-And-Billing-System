@@ -134,7 +134,7 @@ public class Product implements Connectivity {
 		try {
 			Statement s1 = (Statement) p.Connect();
 			ResultSet r = s1.executeQuery("select Product_Name, MRP from items WHERE ID = '"+i+"'");
-		    while(r.next()) {
+			while(r.next()) {
 		    	String t = r.getString("MRP");
 		    	int mrp = Integer.parseInt(t.substring(4));
 				cost = nos*mrp;
@@ -144,6 +144,7 @@ public class Product implements Connectivity {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
+		System.out.println("** Your cart(Product_Name - Quantity in units - cost) **");
 	    System.out.println(c);
 	    System.out.println("Total cost : " + Totalcost);
 		//return c;
@@ -171,6 +172,7 @@ public class Product implements Connectivity {
 		try {
 			Statement s = (Statement) p.merge();
 			ResultSet r = s.executeQuery("select *from cus_info where billno = '"+billno+"'");
+			System.out.println("Sr_No Name  Phn_No Product_Name Quantity  Total_Cost Bill_No");
 			while(r.next()) {
 				System.out.println(r.getInt("sno")+" "+r.getString("name")+" "+r.getString("phno")+" "+r.getString("items")+" "+r.getInt("totalcost")+" "+r.getInt("billno"));
 			}

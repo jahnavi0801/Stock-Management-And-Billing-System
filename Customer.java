@@ -16,11 +16,12 @@ public class Customer{
 	    static Scanner sc = new Scanner(System.in);
 	    
 	    public static void Details() {
+	    	System.out.println();
 	    	sno = c.bn();
-	    	System.out.println("Bill No.-" + sno);
+	    	//System.out.println("Bill No.-" + sno);
 	    	System.out.println("Enter your name :");
 	    	name = sc.nextLine();
-	    	System.out.println("Enter Your Phone Number : ");
+	    	System.out.println("Enter your Phone Number : ");
 	    	String p = sc.nextLine();
 	    	validate(p);
 	    }
@@ -57,6 +58,7 @@ public class Customer{
 	    static void Display() throws IOException{
 	        String n;
 	        do{
+	        	System.out.println();
 	            System.out.println("Select the item you would like to buy.");
 	            System.out.println("1. Daily Uses");
 	            System.out.println("2. Food");
@@ -64,6 +66,7 @@ public class Customer{
 	            //System.out.println("4. Go back to the main page.");
 	            System.out.println("4. Exit ");
 	            n = sc.nextLine();
+	            System.out.println();
 	            switch(n)
 	            {
 	                    case "1" : System.out.println("Welcome to the Daily Uses Section.");
@@ -82,7 +85,8 @@ public class Customer{
 	                               s.print();
 	                               break;*/
 
-	                    case "4" : System.out.println("Thank you for coming.Visit again soon.");    
+	                    case "4" : System.out.println();
+	                    		   System.out.println("Thank you for coming.Visit again soon.");    
 	                               System.exit(0);
 
 	                    default : System.out.println("The number you entered is incorrect.Please try again.");
@@ -101,6 +105,7 @@ public class Customer{
 	     static void ask() throws IOException{
 	    	 String n;
 	    	 do {
+	    		 System.out.println();
 	    		 System.out.println("1. Proceed");
 	    		 System.out.println("2. Main page");
 	    		 System.out.println("3. Exit");
@@ -115,7 +120,8 @@ public class Customer{
 	    		            sb.print();
 	    		            break;
 	    		            
-	    		 case "3" : System.out.println("Thank you for coming.Visit again soon.");    
+	    		 case "3" : System.out.println();
+	    			 		System.out.println("Thank you for coming.Visit again soon.");    
 	                        System.exit(0);
 	             
 	    		 default : System.out.println("The number you entered is incorrect.Please try again.");
@@ -125,6 +131,7 @@ public class Customer{
 	     }
 		 static void DailyUses() throws IOException{
 	        String n;
+	        System.out.println();
 	        do{
 	            System.out.println("Select the item you would like to buy.");
 	            System.out.println("1. Dental");
@@ -147,7 +154,8 @@ public class Customer{
 	                    case "4" : Display();
 	                               break;
 	                               
-	                    case "5" : System.out.println("Thank you for coming.");
+	                    case "5" : System.out.println();
+	                    		   System.out.println("Thank you for coming.");
 				                   System.exit(0);
 				                   
 	                    default : System.out.println("The number you entered is incorrect.Please try again.");
@@ -158,7 +166,9 @@ public class Customer{
 		
 		static void Food() throws IOException {
 	    	String n;
+	    	System.out.println();
 	        do{
+	        	System.out.println();
 	            System.out.println("Select the item you would like to buy.");
 	            System.out.println("1. Dairy");
 	            System.out.println("2. Fruits");
@@ -180,7 +190,8 @@ public class Customer{
 	                    case "4" : Display();
 	                               break;
 	                    
-	                    case "5" : System.out.println("Thank you for coming.");
+	                    case "5" :  System.out.println();
+	                    			System.out.println("Thank you for coming.");
 		                            System.exit(0);
 		                   
 	                    default : System.out.println("The number you entered is incorrect.Please try again.");
@@ -245,8 +256,10 @@ public class Customer{
 	    }
 	    static void show(String a) throws IOException {
 			String f;
+			
 			do {
-			System.out.print("Would you like to continue (Y/N) : ?");
+				System.out.println();
+			System.out.print("Would you like to continue (Y/N) : ");
 			f = sc.nextLine();
 			if(f.equals("Y")||f.equals("y"))
 			{
@@ -296,7 +309,8 @@ public class Customer{
 	    	String n;
 	    	c.cost();
 	    	do {
-	    		System.out.println("Choose:");
+	    		System.out.println();
+	    		System.out.println("Choose :");
 				System.out.println("1. Add to cart");
 				System.out.println("2. Get Bill");
 				System.out.println("3. Exit");
@@ -316,12 +330,14 @@ public class Customer{
 					       String cr = request();
 					       c.cart(sno, name, phno, cr);
 					       c.receipt(sno);
-					       System.out.println("Thank u fr visiting");
+					       System.out.println();
+					       System.out.println("Thank you for visiting");
 				           System.exit(0); 
 					      }
 				          break;
 					    
-	 			case "3" : System.out.println("Thank you for visiting.");
+	 			case "3" : System.out.println();
+	 					   System.out.println("Thank you for visiting.");
 				           System.exit(0);
 				           
 				default  : System.out.println("Please enter a valid input : ");
@@ -331,7 +347,7 @@ public class Customer{
 	    }
 	    
 	    static String request() {
-			System.out.println("Would you like to Pre-order any product : ? ");
+			System.out.println("Would you like to Pre-order any product :  ");
 			String l = sc.nextLine();
 			return l;
 		}
@@ -340,6 +356,7 @@ public class Customer{
 	    static void show() throws IOException{
 	    	String n;
 			do {
+				System.out.println();
 				System.out.println("Select:");
 				System.out.println("1. Menu");
 				System.out.println("2. Exit");
@@ -348,7 +365,8 @@ public class Customer{
 				{
 				case "1" : Display();
 				           break;
-				case "2" : System.out.println("Thank you for visiting.");
+				case "2" : System.out.println();
+					       System.out.println("Thank you for visiting.");
 				           System.exit(0);
 				default  : System.out.println("Please enter a valid input : ");
 				           break;

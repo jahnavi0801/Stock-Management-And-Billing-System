@@ -9,18 +9,24 @@ public class Stock {
 	
 	static void view() throws IOException{
 		p.Table();
+		System.out.println();
 		System.out.println("Would you like to search a category(Y/N) : ");
+		do {
 		s = scan.nextLine();
 		if(s.equals("Y") || s.equals("y"))
 			search();
-		else
+		else if(s.equals("N") || s.equals("n"))
 			ask();
+		else
+			System.out.println("Would you like to search a category(Y/N) : ");
+		}while((!(s.equals("Y"))) && (!(s.equals("y"))) && (!(s.equals("N"))) && (!(s.equals("n"))));
 	}
 
 static void search() throws IOException{
 	
 	//System.out.println("Would you like to search a category(Y/N) : ");
 	//s = scan.nextLine();
+	    System.out.println(); 
 		System.out.println("Enter category : ");
 		String a = scan.nextLine();
 		if(a.equals("Dental"))
@@ -52,6 +58,7 @@ static void search() throws IOException{
 static void ask() throws IOException{
 	String n;
 	do {
+		System.out.println();
 		System.out.println("Select:");
 		System.out.println("1. Menu");
 		System.out.println("2. Exit");
@@ -61,7 +68,8 @@ static void ask() throws IOException{
 		case "1" : Employee e = new Employee();
 		           e.options();
 		           break;
-		case "2" : System.out.println("Thank you for visiting.");
+		case "2" : System.out.println();
+			       System.out.println("Thank you for visiting.");
 		           System.exit(0);
 		default  : System.out.println("Please enter a valid input : ");
 		           break;

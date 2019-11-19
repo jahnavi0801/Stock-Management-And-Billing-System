@@ -14,6 +14,7 @@ public class Store implements Connectivity {
 	   static void ask() throws IOException{
 		   String n;
 			do {
+				System.out.println();
 				System.out.println("Select:");
 				System.out.println("1. Update the current stock");
 				System.out.println("2. View out of stock items");
@@ -31,7 +32,8 @@ public class Store implements Connectivity {
 				case "3" : Employee e = new Employee();
 		                   e.options();
 		                   break;
-				case "4" : System.out.println("Thank you for visiting");
+				case "4" : System.out.println();
+					       System.out.println("Thank you for visiting");
 		                   System.exit(0);
 		                   
 				default  : System.out.println("Please enter valid input : ");
@@ -80,7 +82,7 @@ public class Store implements Connectivity {
 		   String s;
 		   shortage();
 		   do {
-		   System.out.println("Would you like to update (y/n)");
+		   System.out.println("Would you like to update (y/n) :");
 		   s = scan.nextLine();
 		   if(s.equals("Y")|| s.equals("y")) {
 			   System.out.print("Select ID : ");

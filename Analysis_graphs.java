@@ -19,6 +19,7 @@ public class Analysis_graphs {
 	static void ask() throws IOException {
 		   String n;
 			do {
+				System.out.println();
 				System.out.println("Select:");
 				System.out.println("1. Dental");
 				System.out.println("2. Bathing");
@@ -56,7 +57,8 @@ public class Analysis_graphs {
 				case "8" : ask();
 					       break;
 		                   
-				case "9" : System.out.println("Thank you for visiting");
+				case "9" : System.out.println();
+						   System.out.println("Thank you for visiting");
 		                   System.exit(0);
 		                   
 				default  : System.out.println("Please enter valid input : ");

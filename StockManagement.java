@@ -5,12 +5,13 @@ class StockManagement {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException   {
-        System.out.println("Welcome To Store");
+        System.out.println("Welcome To \"The Departmental Store.\"");
         print();
     }
     public static void print() throws IOException{
     	String n;
         do{
+        	System.out.println();
             System.out.println("Login as :");
             System.out.println("1. Customer");
             System.out.println("2. Staff");
@@ -26,7 +27,8 @@ class StockManagement {
                            e.call();
                            break;
 
-                case "3" : System.out.println("Thank you for coming.Visit again soon.");    
+                case "3" : System.out.println();
+                		   System.out.println("Thank you for coming.Visit again soon.");    
                            System.exit(0);
 
                 default : System.out.println("Please try again : ");
