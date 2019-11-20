@@ -36,15 +36,4 @@ public interface Connectivity {
     		throw e;
     	}
     }
-    /*default Statement person() throws Exception{
-    	try {
-    		Class.forName("com.mysql.jdbc.Driver");
-    		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/customer","root","Josaa_16651");
-    		Statement s = c.createStatement();
-    		return s;
-    	}catch(Exception e) {
-    		throw e;
-    	}
-    }
-    */
 }

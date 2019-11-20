@@ -3,102 +3,103 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Customer{
+public class Customer extends Product{
 	
     static String s ; 
     static int id;
     static int n;
-    static Product c = new Product();
-	private static String name;
+    private static String name;
 	private static String phno;
 	static int sno = 0;
     static Scanner sc = new Scanner(System.in);
     
-    public static void Details() {
-    	sno = c.bn();
-    	System.out.println(sno);
-    	System.out.println("Enter your name :");
+    static void Details() {
+    	System.out.println("                                           ****Welcome, Happy Shopping!****");
+        System.out.println();
+    	sno = bn();
+    	System.out.print("                                                 Enter your name :");
     	name = sc.nextLine();
-    	System.out.println("Enter Your Phonenumber : ");
+    	System.out.print("                                                 Enter Your Phone number : ");
     	String p = sc.nextLine();
-    	validate(p);
+    	validate_id(p);
     	
     }
     
-    static void validate(String s) {
+    static void validate_id(String s) {
 		Pattern p = Pattern.compile("\\d{10}");
     	Matcher m = p.matcher(s);
     	if(m.matches()) {
     		phno = s;
     	}
     	else {
-    		System.out.println("Please enter valid Phnoenumber : ");
+    		System.out.print(                                                 "Please enter valid Phnoenumber : ");
     		phno = sc.nextLine();
-    		validate(phno);
+    		validate_id(phno);
     	}
 	}
     
     static void Display() throws Exception{
     	String n;
         do{
-            System.out.println("Select the item which you would like to buy.");
-            System.out.println("1. Daily Uses");
-            System.out.println("2. Food");
-            System.out.println("3. Crockery");
-            System.out.println("4. Exit ");
+        	System.out.println();
+            System.out.println("                                                 Select the item you would like to buy.");
+            System.out.println();
+            System.out.println("                                                 1. Daily Uses");
+            System.out.println("                                                 2. Food");
+            System.out.println("                                                 3. Crockery");
+            System.out.println("                                                 4. Exit ");
+            System.out.println();
+            System.out.print("                                                 Choose : ");
             n = sc.nextLine();
             switch(n)
             {
-                    case "1" : System.out.println("Welcome to the Daily uses section.");
+                    case "1" : System.out.println("                                                 Welcome to the Daily uses section.");
                                DailyUses();
                                break;
 
-                    case "2" : System.out.println("Welcome to the Food section.");
+                    case "2" : System.out.println("                                                 Welcome to the Food section.");
                                Food(); 
                                break;
 
-                    case "3" : System.out.println("Welcome to the Crockery section.");
-                               Crockery(); 
+                    case "3" : System.out.println("                                                 Welcome to the Crockery section.");
+                               category("Kitchenware"); 
                                break;
 
-                    case "4" : System.out.println("Thank you for coming.Visit again .");    
+                    case "4" : System.out.println("                                                 Thank you for coming.Visit again .");    
                                System.exit(0);
 
-                    default : System.out.println("The number you entered is incorrect.Please try again.");
+                    default : System.out.println("                                                 The number you entered is incorrect.Please try again.");
                               break; 
             } 
         }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
-        /*System.out.print(sc.nextLine());
-        System.out.println("Do you want ot continue(Y/N) ?");
-        n1 = sc.nextLine();
-        if(n1.equals("Y")||n1.equals("y"))
-            Display();
-        else
-            System.out.println("Thank you for coming.Visit again .");
-            System.exit(0);*/
-    }
+     }
     
      static void ask() throws Exception {
+    	 System.out.println();
+     	System.out.println("                                             ****Customer Section****");
+     	System.out.println();
+     	
     	 String n;
     	 do {
-    		 System.out.println("1. Proceed");
-    		 System.out.println("2. Main page");
-    		 System.out.println("3. Exit");
-    		 n = sc.nextLine();
+    		 System.out.println("                                                 1. Proceed");
+    		 System.out.println("                                                 2. Main page");
+    		 System.out.println("                                                 3. Exit");
+    		 System.out.println();
+             System.out.print("                                                 Choose : ");
+             n = sc.nextLine();
     		 switch(n) {
     		 
     		 case "1" : Details();
     			        Display();
     		            break;
     		
-    		 case "2" : StockMAnagementAndBilling sb = new StockMAnagementAndBilling();
-    		            sb.print();
+    		 case "2" : StockMAnagementAndBilling.print();
     		            break;
     		            
-    		 case "3" : System.out.println("Thank you for coming.Visit again .");    
+    		 case "3" : System.out.println("                                                 Thank you for coming.Visit again .");    
                         System.exit(0);
              
-    		 default : System.out.println("The number you entered is incorrect.Please try again.");
+    		 default : System.out.println("                                    The number you entered is incorrect.Please try again.");
                        break; 
     		 }
     	 }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3")));
@@ -107,148 +108,103 @@ public class Customer{
 	 static void DailyUses() throws Exception{
         String n;
         do{
-            System.out.println("Select the item which you would like to buy.");
-            System.out.println("1. Dental");
-            System.out.println("2. Bathing");
-            System.out.println("3. Utilities");
-            System.out.println("4. Menu");
-            System.out.println("5. Exit");
+        	System.out.println();
+            System.out.println("                                                 Select the item you would like to buy.");
+            System.out.println();
+            System.out.println("                                                 1. Dental");
+            System.out.println("                                                 2. Bathing");
+            System.out.println("                                                 3. Utilities");
+            System.out.println("                                                 4. Menu");
+            System.out.println("                                                 5. Exit");
+            System.out.println();
+            System.out.print("                                                 Choose : ");
+            
             n = sc.nextLine();
             switch(n)
             {
-                    case "1" : Dental();
+                    case "1" : category("   Dental  ");
                                break;
 
-                    case "2" : Bathing();
+                    case "2" : category("  Bathing  ");
                                break;
 
-                    case "3" : Utilities();
+                    case "3" : category(" Utilities ");
                                break;
 
                     case "4" : Display();
                                break;
                                
-                    case "5" : System.out.println("Thank u fr visiting");
+                    case "5" : System.out.println("                                                 Thank you for visiting");
 			                   System.exit(0);
 			                   
-                    default : System.out.println("The number you entered is incorrect.Please try again.");
+                    default : System.out.println("                                                 The number you entered is incorrect.Please try again.");
                               break; 
                     } 
-        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
+        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&& !(n.equals("5")));
     }
 	
 	static void Food() throws Exception {
     	String n;
         do{
-            System.out.println("Select the item which you would like to buy.");
-            System.out.println("1. Dairy");
-            System.out.println("2. Fruits");
-            System.out.println("3. Vegetables");
-            System.out.println("4. Menu");
-            System.out.println("5. Exit");
+        	System.out.println();
+            System.out.println("                                                 Select the item you would like to buy.");
+            System.out.println();
+            System.out.println("                                                 1. Dairy");
+            System.out.println("                                                 2. Fruits");
+            System.out.println("                                                 3. Vegetables");
+            System.out.println("                                                 4. Menu");
+            System.out.println("                                                 5. Exit");
+            System.out.println();
+            System.out.print("                                                 Choose : ");
+            
             n = sc.nextLine();
             switch(n)
             {
-                    case "1" : Dairy();
+                    case "1" : category("   Dairy   ");
                                break;
 
-                    case "2" : Fruits();
+                    case "2" : category("   Fruits  ");
                                break;
 
-                    case "3" : Vegetables();
+                    case "3" : category(" Vegetables");
                                break;
                     
                     case "4" : Display();
                                break;
                     
-                    case "5" : System.out.println("Thank u fr visiting");
-	                            System.exit(0);
+                    case "5" : System.out.println("                                                 Thank you for visiting");
+	                           System.exit(0);
 	                   
-                    default : System.out.println("The number you entered is incorrect.Please try again.");
+                    default : System.out.println("                                                 The number you entered is incorrect. Please try again.");
                               break; 
             }
-        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));
+        }while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4"))&& !(n.equals("5")));
 
 	}
 	
-	static void Dental() throws Exception {
-		s = "dental";
-		System.out.println("****DENTAL****");
+	static void category(String s) throws Exception {
+		System.out.println("                                                 ****"+s+"****");
 		System.out.println();
-		c.Table(s);
+		Table(s);
 		show(s);
 	}
-	
-	static void Bathing() throws Exception {
-		s = "bathing";
-		System.out.println("****BATHING****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}
-	
-	static void Utilities() throws Exception {
-		s = "utilities";
-		System.out.println("****UTILITIES****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}
-	
-	static void Dairy() throws Exception {
-		s = "dairy";
-		System.out.println("****DAIRY****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}	
-	
-	static void Fruits() throws Exception {
-		s = "fruits";
-		System.out.println("****FRUITS****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}
-	
-	static void Vegetables() throws Exception {
-		s = "vegetables";
-		System.out.println("****VEGETABLES****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}
-	
-    static void Crockery() throws Exception {
-    	System.out.println();
-		System.out.println("We have only kitchenware");
-		s = "kitchenware";
-		System.out.println("****KITCHENWARE****");
-		System.out.println();
-		c.Table(s);
-		show(s);
-	}
-    
-    static void stocks(int i) {
-    	n = sc.nextInt();
-    	c.validate_n(n);
-    }
-    
+	 
     static void show(String a) throws Exception {
+    	System.out.println();
 		String f;
 		do {
-		System.out.print("Would you like to continue (Y/N) : ");
+		System.out.print("                                                 Would you like to continue (Y/N) : ");
 		f = sc.nextLine();
 		if(f.equals("Y")||f.equals("y"))
 		{
-			System.out.println("Select ID : ");
-		    id = sc.nextInt();
-		    c.validate_id(a, id);
-		    System.out.println("Qunatity");
+			System.out.println();
+			System.out.print("                                                 Select ID : ");
+			id = sc.nextInt();
+		    validate_id(a, id);
+		    System.out.print("                                                 Enter Quantity in units : ");
 		    n = sc.nextInt();
-		    c.validate_n(n);
+		    validate_n(n);
 		    end();
-		    //String e = sc.nextLine();
 		    show();
 		}
 		if(f.equals("N")||f.equals("n")){
@@ -259,44 +215,52 @@ public class Customer{
    }
     
     static void end() throws Exception {
-    	String n;
-    	c.cost();
+    	System.out.println();
+		String n;
+    	cost();
         do {
-    		System.out.println("Select:");
-    		System.out.println("1. Add to the cart");
-			System.out.println("2. Bill");
-			System.out.println("3. Exit");
+        	System.out.println();
+			System.out.println("                                                 Select:");
+    		System.out.println("                                                 1. Add to cart");
+			System.out.println("                                                 2. Get Bill");
+			System.out.println("                                                 3. Menu");
+			System.out.println("                                                 4. Exit");
 			String e = sc.nextLine();
+			System.out.println();
+            System.out.print("                                                 Choose : ");
+            
 			n = sc.nextLine();
-			String a = "";
 			switch(n) 
 			{
 			case "1" : {
-				        c.Update();
+				        Update();
 				        Display();
 			           }
 			           break;
 			         
 			case "2" :{ 
 				       String cr = request();
-				       c.cart(sno, name, phno, cr);
-				       c.receipt(sno);
-				       System.out.println("Thank u fr visiting");
+				       cart(sno, name, phno, cr);
+				       receipt(sno);
+				       System.out.println();
+				       System.out.println("                                                 Thank you for visiting");
 			           System.exit(0);
 				      }
 			          break;
 				    
- 			case "3" : System.out.println("Thank u fr visiting");
+			case "3" : Display();
+			           break;
+ 			case "4" : System.out.println("                                                 Thank you for visiting");
 	                   System.exit(0);
 	        
- 			default  : System.out.println("Please enter valid input : ");
+ 			default  : System.out.println("                                                 Please enter valid input : ");
 			           break;
 			}
-		}while(!(n.equals("1"))&&!(n.equals("2")));	
+		}while(!(n.equals("1"))&&!(n.equals("2"))&&!(n.equals("3"))&&!(n.equals("4")));	
     }
 			
 	static String request() {
-		System.out.println("Do you have any request : ");
+		System.out.print("                                                 Do you have any request : ");
 		String l = sc.nextLine();
 		return l;
 	}
@@ -304,17 +268,20 @@ public class Customer{
 	static void show() throws Exception {
     	String n;
 		do {
-			System.out.println("Select:");
-			System.out.println("1. Menu");
-			System.out.println("2. Exit");
+			System.out.println("                                                 Select:");
+			System.out.println("                                                 1. Menu");
+			System.out.println("                                                 2. Exit");
+			System.out.println();
+            System.out.print("                                                 Choose : ");
+            
 			n = sc.nextLine();
 			switch(n) 
 			{
 			case "1" : Display();
 			           break;
-			case "2" : System.out.println("Thank u fr visiting");
+			case "2" : System.out.println("                                                 Thank you for visiting");
 			           System.exit(0);
-			default  : System.out.println("Please enter valid input : ");
+			default  : System.out.println("                                                 Please enter valid input : ");
 			           break;
 			}
 		}while(!(n.equals("1"))&&!(n.equals("2")));	
